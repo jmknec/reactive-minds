@@ -58,7 +58,7 @@ Emotion dysregulation is a normal part of early childhood development, but for m
 
 ### APIs
 
-- No external APIs will be used
+- No external APIs will be used. An API will be created for this project.
 
 ### Sitemap
 
