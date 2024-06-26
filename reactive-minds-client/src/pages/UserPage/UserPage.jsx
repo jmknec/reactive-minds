@@ -1,6 +1,6 @@
-import "./HomePage.scss";
+import "./UserPage.scss";
 
-export default function HomePage() {
+export default function UserPage() {
   return (
     <>
       <h1>Reactive Minds</h1>
