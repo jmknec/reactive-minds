@@ -1,0 +1,22 @@
+@use "./styles/partials/mixins" as *;
+@use "./styles/partials/typography" as *;
+@use "./styles/partials/variables" as *;
+
+//global resets
+*,
+*::before,
+*::after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+#root {
+  background-color: $background;
+  color: $text;
+  font-family: $primary-font;
+  height: 100vh;
+  width: 100vw;
+}

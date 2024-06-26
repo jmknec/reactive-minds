@@ -1,0 +1,73 @@
+@use "./typography" as *;
+@use "./variables" as *;
+
+//media queries
+@mixin tablet {
+  @media screen and (min-width: $tablet-breakpoint) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media screen and (min-width: $desktop-breakpoint) {
+    @content;
+  }
+}
+
+//mobile typography
+@mixin mobile-titles {
+  font-family: $primary-font;
+  font-size: 1.75rem;
+  font-weight: 600;
+  line-height: 2rem;
+}
+
+@mixin mobile-subtitles {
+  font-family: $primary-font;
+  font-size: 1.5rem;
+  font-weight: 400;
+  line-height: 1.75rem;
+}
+
+@mixin mobile-cta-labels {
+  font-family: $primary-font;
+  font-size: 0.75rem;
+  font-weight: 400;
+  line-height: 1rem;
+}
+
+@mixin mobile-body {
+  font-family: $primary-font;
+  font-size: 0.875rem;
+  font-weight: 200;
+  line-height: 1rem;
+}
+
+//large-screen typography
+@mixin dt-titles {
+  font-family: $primary-font;
+  font-size: 2rem;
+  font-weight: 600;
+  line-height: 2.5rem;
+}
+
+@mixin dt-subtitles {
+  font-family: $primary-font;
+  font-size: 1.75rem;
+  font-weight: 400;
+  line-height: 2rem;
+}
+
+@mixin dt-cta-labels {
+  font-family: $primary-font;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.125rem;
+}
+
+@mixin dt-body {
+  font-family: $primary-font;
+  font-size: 1rem;
+  font-weight: 200;
+  line-height: 1.25rem;
+}
