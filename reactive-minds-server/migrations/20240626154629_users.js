@@ -4,9 +4,11 @@
  */
 export function up(knex) {
   return knex.schema.createTable("users", function (table) {
-    table.uuid("id").primary();
+    table.increments("id").primary();
     table.string("email").unique().notNullable();
     table.string("username").unique().notNullable();
+    //TO DO: set up hashing in server routes / API call setup
+    //before sending to database
     table.string("password_hash").unique().notNullable();
     table.string("role").defaultTo("parent or caregiver");
   });
