@@ -1,0 +1,1 @@
+import "./StrategiesPage.scss";

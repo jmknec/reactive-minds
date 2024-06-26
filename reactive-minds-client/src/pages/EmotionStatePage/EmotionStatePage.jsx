@@ -1,0 +1,1 @@
+import "./EmotionStatePage.scss";
