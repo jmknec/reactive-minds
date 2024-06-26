@@ -9,7 +9,7 @@ export function up(knex) {
     //TO DO: ?change type field to "set" data type -- look into this more
     table.string("type").notNullable();
     table.text("description").notNullable();
-    table.string("emotional_states").notNullable();
+    table.string("emotional_state").notNullable();
     table.decimal("avg_rating").defaultTo(0);
   });
 }
