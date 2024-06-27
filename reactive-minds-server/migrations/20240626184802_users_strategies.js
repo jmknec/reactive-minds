@@ -5,6 +5,8 @@
 export function up(knex) {
   return knex.schema.createTable("users_strategies", function (table) {
     table.increments("id").primary();
+    table.integer("user_id").unsigned().notNullable();
+    table.integer("strategy_id").unsigned().notNullable();
     table
       .foreign("user_id")
       .references("id")
