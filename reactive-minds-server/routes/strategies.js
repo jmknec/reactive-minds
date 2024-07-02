@@ -15,18 +15,34 @@ router.route("/").get(async (_req, res) => {
   }
 });
 //get list of strategies by emotional state
-router.route("/:state").get(async (req, res) => {
+router.route("/emotions/:state").get(async (req, res) => {
   const state = req.params.state;
   try {
     const stateStrategies = await knex
       .select("*")
       .from("strategies")
       .where("emotional_state", state);
+    if (stateStrategies.length < 1) {
+      return res.status(404).send("Unable to find strategies");
+    }
     res.json(stateStrategies);
   } catch (error) {
     console.error(error);
     return res.status(500).send("Error getting strategies");
   }
 });
-
+//get one strategy by id
+router.route("/:id").get(async (req, res) => {
+  const id = req.params.id;
+  try {
+    const strategy = await knex.select("*").from("strategies").where("id", id);
+    if (strategy.length < 1) {
+      return res.status(404).send("Strategy does not exist");
+    }
+    res.json(strategy);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).send("Error getting strategies");
+  }
+});
 export default router;
