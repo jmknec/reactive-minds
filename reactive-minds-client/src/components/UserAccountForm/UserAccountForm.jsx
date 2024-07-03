@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./UserAccountForm.scss";
 import FormInput from "../FormInput/FormInput";
 
-export default function UserAccountForm({ initialValues, onSubmit }) {
+export default function UserAccountForm({ isUser, initialValues, onSubmit }) {
   const [values, setValues] = useState(initialValues);
 
   const handleChange = (e) => {
@@ -20,6 +20,7 @@ export default function UserAccountForm({ initialValues, onSubmit }) {
   return (
     <form className="form" onSubmit={handleSubmit}>
       <FormInput
+        fieldClass="form__field"
         htmlFor="email"
         label="Email"
         id="email"
@@ -29,6 +30,7 @@ export default function UserAccountForm({ initialValues, onSubmit }) {
         value={values.email}
       />
       <FormInput
+        fieldClass={`form__field ${isUser ? "form__field--hidden" : ""}`}
         htmlFor="username"
         label="Username"
         id="username"
@@ -38,6 +40,7 @@ export default function UserAccountForm({ initialValues, onSubmit }) {
         value={values.username}
       />
       <FormInput
+        fieldClass="form__field"
         htmlFor="password"
         label="Password"
         id="password"
@@ -47,6 +50,7 @@ export default function UserAccountForm({ initialValues, onSubmit }) {
         value={values.password}
       />
       <FormInput
+        fieldClass={`form__field ${isUser ? "form__field--hidden" : ""}`}
         htmlFor="confirm"
         label="Confirm Password"
         id="confirm"

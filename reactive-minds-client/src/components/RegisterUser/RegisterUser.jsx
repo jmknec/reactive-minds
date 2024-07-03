@@ -2,10 +2,8 @@ import axios from "axios";
 import "./RegisterUser.scss";
 import UserAccountForm from "../UserAccountForm/UserAccountForm";
 
-const baseUrl = import.meta.env.VITE_API_URL;
-const registerUrl = `${baseUrl}/users/register`;
-
-export default function RegisterUser({ setIsUser }) {
+export default function RegisterUser({ isUser, setIsUser, baseUrl }) {
+  const registerUrl = `${baseUrl}/users/register`;
   const initialValues = { email: "", username: "", password: "", confirm: "" };
   const addUser = async (values) => {
     try {
@@ -19,7 +17,11 @@ export default function RegisterUser({ setIsUser }) {
 
   return (
     <section className="registration-form">
-      <UserAccountForm onSubmit={addUser} initialValues={initialValues} />
+      <UserAccountForm
+        isUser={isUser}
+        onSubmit={addUser}
+        initialValues={initialValues}
+      />
     </section>
   );
 }
