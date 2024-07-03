@@ -1,11 +1,11 @@
+import { useState } from "react";
 import "./UserPage.scss";
-import UserAccountForm from "../../components/UserAccountForm/UserAccountForm";
+import RegisterUser from "../../components/RegisterUser/RegisterUser";
 
 export default function UserPage() {
-  return (
-    <>
-      <h2>Register New User</h2>
-      <UserAccountForm />
-    </>
-  );
+  const [isUser, setIsUser] = useState(false);
+
+  if (!isUser) return <RegisterUser setIsUser={setIsUser} />;
+
+  return <h2>registered</h2>;
 }

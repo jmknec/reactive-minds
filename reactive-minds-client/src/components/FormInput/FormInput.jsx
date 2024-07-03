@@ -1,7 +1,7 @@
 import "./FormInput.scss";
 
 export default function FormInput(props) {
-  const { htmlFor, label, id, name, placeholder, value } = props;
+  const { htmlFor, label, id, name, placeholder, onChange, value } = props;
 
   return (
     <div className="form-field">
@@ -14,6 +14,7 @@ export default function FormInput(props) {
         name={name}
         type="text"
         placeholder={placeholder}
+        onChange={onChange}
         value={value}
       />
     </div>

@@ -1,16 +1,32 @@
+import { useState } from "react";
 import "./UserAccountForm.scss";
 import FormInput from "../FormInput/FormInput";
 
-export default function UserAccountForm(props) {
+export default function UserAccountForm({ initialValues, onSubmit }) {
+  const [values, setValues] = useState(initialValues);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setValues({
+      ...values,
+      [name]: value,
+    });
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onSubmit(values);
+  };
+
   return (
-    <form className="form">
+    <form className="form" onSubmit={handleSubmit}>
       <FormInput
         htmlFor="email"
         label="Email"
         id="email"
         name="email"
         placeholder="Please enter your email address"
-        value=""
+        onChange={handleChange}
+        value={values.email}
       />
       <FormInput
         htmlFor="username"
@@ -18,7 +34,8 @@ export default function UserAccountForm(props) {
         id="username"
         name="username"
         placeholder="Please enter a username"
-        value=""
+        onChange={handleChange}
+        value={values.username}
       />
       <FormInput
         htmlFor="password"
@@ -26,7 +43,8 @@ export default function UserAccountForm(props) {
         id="password"
         name="password"
         placeholder="Please enter a password"
-        value=""
+        onChange={handleChange}
+        value={values.password}
       />
       <FormInput
         htmlFor="confirm"
@@ -34,7 +52,8 @@ export default function UserAccountForm(props) {
         id="confirm"
         name="confirm"
         placeholder="Please confirm your password"
-        value=""
+        onChange={handleChange}
+        value={values.confirm}
       />
       <button className="form__register">Register</button>
     </form>
