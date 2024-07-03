@@ -1,9 +1,11 @@
 import "./UserPage.scss";
+import UserAccountForm from "../../components/UserAccountForm/UserAccountForm";
 
 export default function UserPage() {
   return (
     <>
-      <h1>Reactive Minds</h1>
+      <h2>Register New User</h2>
+      <UserAccountForm />
     </>
   );
 }
