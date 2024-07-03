@@ -1,4 +1,4 @@
-import { BrowserRoute, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.scss";
 import HomePage from "./pages/HomePage/HomePage";
 import EmotionStatePage from "./pages/EmotionStatePage/EmotionStatePage";
@@ -9,7 +9,7 @@ import ErrorPage from "./pages/ErrorPage/ErrorPage";
 function App() {
   return (
     <>
-      <BrowserRoute>
+      <BrowserRouter>
         <h1>Reactive Minds</h1>
         <Routes>
           <Route path="/" element={<HomePage />}></Route>
@@ -18,7 +18,7 @@ function App() {
           <Route path="/strategies" element={<StrategiesPage />}></Route>
           <Route path="*" element={<ErrorPage />}></Route>
         </Routes>
-      </BrowserRoute>
+      </BrowserRouter>
     </>
   );
 }
