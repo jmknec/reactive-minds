@@ -8,13 +8,6 @@ const router = express.Router();
 const knex = initKnex(configuration);
 const jsonSecretKey = process.env.SECRET_KEY;
 
-function getToken(req) {
-  if (!req.headers.authorization) {
-    return;
-  } else {
-    return req.headers.authorization.split(" ")[1];
-  }
-}
 //register new user
 router.route("/register").post(async (req, res) => {
   const { email, username, password } = req.body;
@@ -43,7 +36,6 @@ router.route("/register").post(async (req, res) => {
 //log into existing account
 router.route("/login").post(async (req, res) => {
   const { email, password } = req.body;
-  const token = getToken(req);
 
   try {
     const user = await knex.select("*").from("users").where("email", email);
