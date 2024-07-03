@@ -9,7 +9,7 @@ export function up(knex) {
     table.string("username").unique().notNullable();
     //TO DO: set up hashing in server routes / API call setup
     //before sending to database
-    table.string("password_hash").unique().notNullable();
+    table.string("password_hash").notNullable();
     table.string("role").defaultTo("parent or caregiver");
   });
 }

@@ -9,8 +9,7 @@ router.route("/").get(async (_req, res) => {
   try {
     const listStrategies = await knex("strategies");
     res.json(listStrategies);
-  } catch (error) {
-    console.error(error);
+  } catch {
     return res.status(500).send("Error getting strategies");
   }
 });
@@ -26,8 +25,7 @@ router.route("/emotions/:state").get(async (req, res) => {
       return res.status(404).send("Unable to find strategies");
     }
     res.json(stateStrategies);
-  } catch (error) {
-    console.error(error);
+  } catch {
     return res.status(500).send("Error getting strategies");
   }
 });
@@ -40,8 +38,7 @@ router.route("/:id").get(async (req, res) => {
       return res.status(404).send("Strategy does not exist");
     }
     res.json(strategy);
-  } catch (error) {
-    console.error(error);
+  } catch {
     return res.status(500).send("Error getting strategies");
   }
 });
