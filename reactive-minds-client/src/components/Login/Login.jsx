@@ -20,6 +20,7 @@ export default function Login({ isUser, setIsLoggedIn, baseUrl }) {
         isUser={isUser}
         onSubmit={loginUser}
         initialValues={initialValues}
+        buttonLabel="Sign in"
       />
     </section>
   );

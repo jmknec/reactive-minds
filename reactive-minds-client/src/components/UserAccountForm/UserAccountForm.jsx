@@ -2,7 +2,12 @@ import { useState } from "react";
 import "./UserAccountForm.scss";
 import FormInput from "../FormInput/FormInput";
 
-export default function UserAccountForm({ isUser, initialValues, onSubmit }) {
+export default function UserAccountForm({
+  isUser,
+  initialValues,
+  onSubmit,
+  buttonLabel,
+}) {
   const [values, setValues] = useState(initialValues);
 
   const handleChange = (e) => {
@@ -59,7 +64,7 @@ export default function UserAccountForm({ isUser, initialValues, onSubmit }) {
         onChange={handleChange}
         value={values.confirm}
       />
-      <button className="form__register">Register</button>
+      <button className="form__register">{buttonLabel}</button>
     </form>
   );
 }

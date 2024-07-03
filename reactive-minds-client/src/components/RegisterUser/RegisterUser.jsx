@@ -21,6 +21,7 @@ export default function RegisterUser({ isUser, setIsUser, baseUrl }) {
         isUser={isUser}
         onSubmit={addUser}
         initialValues={initialValues}
+        buttonLabel="Register"
       />
     </section>
   );

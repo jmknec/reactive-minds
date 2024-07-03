@@ -18,5 +18,5 @@ export default function UserPage() {
       <Login isUser={isUser} setIsLoggedIn={setIsLoggedIn} baseUrl={baseUrl} />
     );
 
-  return <h2>registered</h2>;
+  return <h2>logged in</h2>;
 }
