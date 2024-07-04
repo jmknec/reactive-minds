@@ -1,11 +1,11 @@
 import { useState } from "react";
-import "./UserPage.scss";
+import "./LoginPage.scss";
 import RegisterUser from "../../components/RegisterUser/RegisterUser";
-import Login from "../../components/Login/Login";
+import LoginForm from "../../components/LoginForm/LoginForm";
 
 const baseUrl = import.meta.env.VITE_API_URL;
 
-export default function UserPage() {
+export default function LoginPage() {
   const [isUser, setIsUser] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
@@ -15,8 +15,10 @@ export default function UserPage() {
     );
   if (!isLoggedIn)
     return (
-      <Login isUser={isUser} setIsLoggedIn={setIsLoggedIn} baseUrl={baseUrl} />
+      <LoginForm
+        isUser={isUser}
+        setIsLoggedIn={setIsLoggedIn}
+        baseUrl={baseUrl}
+      />
     );
-
-  return <h2>logged in</h2>;
 }
