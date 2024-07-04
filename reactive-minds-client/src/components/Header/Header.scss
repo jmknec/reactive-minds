@@ -1,0 +1,32 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/typography" as *;
+@use "../../styles/partials/variables" as *;
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem;
+  border-bottom: 1px solid $text;
+  width: 100%;
+
+  &__link {
+    text-decoration: none;
+    color: $text;
+  }
+
+  &__name {
+    @include mobile-body;
+  }
+
+  &__actions {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  &__links {
+    @include mobile-cta-labels;
+    display: flex;
+    gap: 0.25rem;
+    list-style-type: none;
+  }
+}

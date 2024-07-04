@@ -2,6 +2,7 @@ import { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.scss";
 import { CurrentUserContext } from "./contexts/CurrentUserContext";
+import Header from "./components/Header/Header";
 import HomePage from "./pages/HomePage/HomePage";
 import EmotionStatePage from "./pages/EmotionStatePage/EmotionStatePage";
 import StrategiesPage from "./pages/StrategiesPage/StrategiesPage";
@@ -22,6 +23,7 @@ function App() {
   return (
     <BrowserRouter>
       <CurrentUserContext.Provider value={{ currentUser, setCurrentUser }}>
+        <Header />
         <Routes>
           <Route path="/" element={<HomePage />}></Route>
           <Route path="/emotions" element={<EmotionStatePage />}></Route>
