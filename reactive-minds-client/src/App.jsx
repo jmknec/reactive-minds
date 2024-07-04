@@ -26,7 +26,7 @@ function App() {
           <Route path="/" element={<HomePage />}></Route>
           <Route path="/emotions" element={<EmotionStatePage />}></Route>
           <Route path="/strategies" element={<StrategiesPage />}></Route>
-          <Route path="/login" element={<LoginPage />}></Route>
+          <Route path="/users/login" element={<LoginPage />}></Route>
           <Route path="/profile" element={<ProfilePage />}></Route>
           <Route path="*" element={<ErrorPage />}></Route>
         </Routes>

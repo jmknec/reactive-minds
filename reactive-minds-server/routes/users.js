@@ -61,5 +61,31 @@ router.route("/login").post(async (req, res) => {
     res.status(500).json({ token: "", message: "Error logging in." });
   }
 });
+//get user's strategies
+router.route("/:id/strategies").get(async (req, res) => {
+  const id = req.params.id;
+  try {
+    const userStrategies = await knex
+      .select(
+        "strategies.name",
+        "strategies.type",
+        "strategies.description",
+        "strategies.avg_rating",
+        "users_strategies.is_saved"
+      )
+      .from("users_strategies")
+      .join("users", "users_strategies.user_id", "=", "users.id")
+      .join("strategies", "users_strategies.strategy_id", "=", "strategies.id")
+      .where("users_strategies.user_id", id);
+    if (userStrategies.length < 1) {
+      return res.status(404).send("No strategies associated with this user");
+    }
+    console.log(userStrategies.length);
+    res.json(userStrategies);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).send("Error getting user strategies");
+  }
+});
 
 export default router;

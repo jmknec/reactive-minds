@@ -5,7 +5,7 @@ import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import UserAccountForm from "../UserAccountForm/UserAccountForm";
 
 export default function Login({ baseUrl }) {
-  const loginUrl = `${baseUrl}/login`;
+  const loginUrl = `${baseUrl}/users/login`;
   const initialValues = { email: "", password: "" };
   const { setCurrentUser } = useContext(CurrentUserContext);
   const loginUser = async (values) => {
