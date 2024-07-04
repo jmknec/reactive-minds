@@ -67,6 +67,7 @@ router.route("/:id/strategies").get(async (req, res) => {
   try {
     const userStrategies = await knex
       .select(
+        "strategies.id",
         "strategies.name",
         "strategies.type",
         "strategies.description",
