@@ -1,14 +1,17 @@
+import { useContext } from "react";
 import axios from "axios";
 import "./LoginForm.scss";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import UserAccountForm from "../UserAccountForm/UserAccountForm";
 
-export default function Login({ isUser, setIsLoggedIn, baseUrl }) {
-  const loginUrl = `${baseUrl}/users/login`;
+export default function Login({ baseUrl }) {
+  const loginUrl = `${baseUrl}/login`;
   const initialValues = { email: "", password: "" };
+  const { setCurrentUser } = useContext(CurrentUserContext);
   const loginUser = async (values) => {
     try {
       const loginResponse = await axios.post(`${loginUrl}`, values);
-      setIsLoggedIn(true);
+      setCurrentUser(loginResponse);
       return loginResponse;
     } catch (error) {
       console.error(error);
@@ -17,7 +20,6 @@ export default function Login({ isUser, setIsLoggedIn, baseUrl }) {
   return (
     <section className="login-form">
       <UserAccountForm
-        isUser={isUser}
         onSubmit={loginUser}
         initialValues={initialValues}
         buttonLabel="Sign in"
