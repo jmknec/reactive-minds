@@ -3,7 +3,7 @@ import "./Header.scss";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import { Link } from "react-router-dom";
 
-export default function Header({ logo, logomark }) {
+export default function Header({ logo, icon }) {
   const { currentUser, setCurrentUser } = useContext(CurrentUserContext);
 
   return (
@@ -19,8 +19,8 @@ export default function Header({ logo, logomark }) {
         </Link>
         <Link className="header__link header__link--mobile" to={"/"}>
           <img
-            className="header__logomark"
-            src={logomark}
+            className="header__icon"
+            src={icon}
             alt="scribbled illustration of a brain"
           />
         </Link>

@@ -9,8 +9,8 @@ import StrategiesPage from "./pages/StrategiesPage/StrategiesPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import ErrorPage from "./pages/ErrorPage/ErrorPage";
-import logo from "../src/assets/icons-logos/logo.svg";
-import logomark from "../src/assets/icons-logos/logomark.svg";
+import logo from "../src/assets/icons-logos/rm-logo.svg";
+import icon from "../src/assets/icons-logos/rm-icon.svg";
 
 function App() {
   const user = {
@@ -25,7 +25,7 @@ function App() {
   return (
     <BrowserRouter>
       <CurrentUserContext.Provider value={{ currentUser, setCurrentUser }}>
-        <Header logo={logo} logomark={logomark} />
+        <Header logo={logo} icon={icon} />
         <Routes>
           <Route path="/" element={<HomePage />}></Route>
           <Route path="/emotions" element={<EmotionStatePage />}></Route>

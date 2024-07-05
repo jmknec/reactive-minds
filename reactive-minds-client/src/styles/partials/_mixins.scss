@@ -31,9 +31,9 @@
 
 @mixin mobile-cta-labels {
   font-family: $primary-font;
-  font-size: 0.75rem;
+  font-size: 0.625rem;
   font-weight: 400;
-  line-height: 1rem;
+  line-height: 0.875rem;
 }
 
 @mixin mobile-body {
@@ -60,9 +60,9 @@
 
 @mixin dt-cta-labels {
   font-family: $primary-font;
-  font-size: 0.875rem;
+  font-size: 0.75rem;
   font-weight: 400;
-  line-height: 1.125rem;
+  line-height: 1rem;
 }
 
 @mixin dt-body {

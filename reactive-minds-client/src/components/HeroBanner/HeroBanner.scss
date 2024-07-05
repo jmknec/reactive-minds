@@ -6,29 +6,34 @@
   &__hero {
     background: linear-gradient(
       75deg,
-      $midnight-blue,
+      $a-dark-midnight-blue,
       #006bbc,
       #0082bd,
       #0096b6,
       #00a8ac,
       #26b3a4,
-      $tradewind,
+      $p-light-tradewind,
       #4bbd97,
       #6fc688,
       #8acc74,
       #aacf5f,
       #ced04c,
-      $saffron
+      $a-med-saffron
     );
     filter: contrast(80%);
     display: flex;
     align-items: center;
     padding: 0 1rem;
+    height: clamp(175px, 25%, 250px);
     width: 100%;
-    height: 25%;
+
+    @include tablet {
+      padding: 0 2.5rem;
+      height: clamp(225px, 50%, 350px);
+    }
   }
 
   &__title {
-    color: $albescent-white;
+    color: $nt-light-albescent-white;
   }
 }

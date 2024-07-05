@@ -15,8 +15,8 @@
 
 #root {
   @include full-size;
-  background-color: $wild-sand;
-  color: $scorpion;
+  background-color: $nb-wild-sand;
+  color: $nt-dark-scorpion;
   font-family: $primary-font;
 }
 
@@ -32,7 +32,7 @@ h1 {
 h2,
 h3 {
   @include mobile-subtitles;
-  color: $fun-green;
+  color: $p-dark-fun-green;
 
   @include tablet {
     @include dt-subtitles;
@@ -41,6 +41,10 @@ h3 {
 
 p {
   @include mobile-body;
+  max-width: 75ch;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
 
   @include tablet {
     @include dt-body;

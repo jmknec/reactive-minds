@@ -8,9 +8,14 @@
 }
 
 .about {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
   padding: 1rem;
 
-  &__description {
-    padding: 0.5rem 0;
+  @include tablet {
+    gap: 1rem;
+    padding: 2.5rem;
   }
 }
