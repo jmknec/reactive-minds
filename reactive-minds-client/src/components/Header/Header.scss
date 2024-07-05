@@ -6,12 +6,12 @@
   display: flex;
   justify-content: space-between;
   padding: 0.5rem;
-  border-bottom: 1px solid $text;
+  border-bottom: 1px solid $scorpion;
   width: 100%;
 
   &__link {
     text-decoration: none;
-    color: $text;
+    color: $scorpion;
   }
 
   &__name {

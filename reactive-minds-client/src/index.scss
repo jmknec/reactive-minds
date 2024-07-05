@@ -14,9 +14,63 @@
 }
 
 #root {
-  background-color: $background;
-  color: $text;
+  background-color: $wild-sand;
+  color: $scorpion;
   font-family: $primary-font;
   height: 100vh;
   width: 100vw;
+}
+
+//default element styles
+h1 {
+  @include mobile-titles;
+
+  @include tablet {
+    @include dt-titles;
+  }
+}
+
+h2,
+h3 {
+  @include mobile-subtitles;
+
+  @include tablet {
+    @include dt-subtitles;
+  }
+}
+
+p {
+  @include mobile-body;
+
+  @include tablet {
+    @include dt-body;
+  }
+}
+
+label,
+button {
+  @include mobile-cta-labels;
+
+  @include tablet {
+    @include dt-cta-labels;
+  }
+}
+
+ul {
+  @include mobile-body;
+  list-style-type: none;
+
+  @include tablet {
+    @include dt-body;
+  }
+}
+
+a {
+  @include mobile-body;
+  text-decoration: none;
+  color: inherit;
+
+  @include tablet {
+    @include dt-body;
+  }
 }
