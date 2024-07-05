@@ -2,13 +2,20 @@
 $tablet-breakpoint: 767px;
 $desktop-breakpoint: 1280px;
 
-//main site colours
-$background: #fef9f5;
-$text: #3e3a36;
-$rosehip: #f6c3ae;
+//neutral colours
+$scorpion: #5a5858; //main text colour
+$wild-sand: #f5f5f5; //main background colour
+$albescent-white: #f5e9ce; //text colour for dark backgrounds
 
-//accent colours
-$brick: #f0743e;
-$sunshine: #fdd848;
-$apple: #aad59e;
-$clear: #9ab2d4;
+//primary colours - main UI colour & "regulated" emotion state
+$fun-green: #036040;
+$sea-green: #318d6d;
+$tradewind: #57bc9d;
+
+//accent colours - blues for low reactivity; yellows for high
+$midnight-blue: #00276f;
+$cerulean-blue: #2250ae;
+$curious-blue: #318dce;
+$gold-tips: #e8b615;
+$saffron: #f4ce3f;
+$sweet-corn: #f9e18c;
