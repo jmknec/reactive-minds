@@ -24,6 +24,7 @@
 //default element styles
 h1 {
   @include mobile-titles;
+  color: $fun-green;
 
   @include tablet {
     @include dt-titles;
@@ -33,6 +34,7 @@ h1 {
 h2,
 h3 {
   @include mobile-subtitles;
+  color: $fun-green;
 
   @include tablet {
     @include dt-subtitles;
