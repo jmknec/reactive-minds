@@ -1,0 +1,34 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/typography" as *;
+@use "../../styles/partials/variables" as *;
+
+.page {
+  &__hero {
+    background: linear-gradient(
+      75deg,
+      $midnight-blue,
+      #006bbc,
+      #0082bd,
+      #0096b6,
+      #00a8ac,
+      #26b3a4,
+      $tradewind,
+      #4bbd97,
+      #6fc688,
+      #8acc74,
+      #aacf5f,
+      #ced04c,
+      $saffron
+    );
+    filter: contrast(80%);
+    display: flex;
+    align-items: center;
+    padding: 0 1rem;
+    width: 100%;
+    height: 35%;
+  }
+
+  &__title {
+    color: $albescent-white;
+  }
+}

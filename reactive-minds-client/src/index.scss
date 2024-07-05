@@ -24,7 +24,6 @@
 //default element styles
 h1 {
   @include mobile-titles;
-  color: $fun-green;
 
   @include tablet {
     @include dt-titles;

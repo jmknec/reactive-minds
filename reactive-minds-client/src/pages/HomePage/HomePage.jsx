@@ -1,9 +1,10 @@
 import "./HomePage.scss";
+import HeroBanner from "../../components/HeroBanner/HeroBanner";
 
 export default function HomePage() {
   return (
-    <>
-      <h1>Welcome to Reactive Minds</h1>
-    </>
+    <main className="page">
+      <HeroBanner title="Welcome to Reactive Minds" />
+    </main>
   );
 }
