@@ -3,6 +3,14 @@
 @use "../../styles/partials/variables" as *;
 
 .page {
+  height: 150vh;
   width: 100%;
-  height: 100%;
+}
+
+.about {
+  padding: 1rem;
+
+  &__description {
+    padding: 0.5rem 0;
+  }
 }

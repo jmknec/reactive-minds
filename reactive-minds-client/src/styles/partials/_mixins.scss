@@ -40,7 +40,7 @@
   font-family: $primary-font;
   font-size: 0.875rem;
   font-weight: 200;
-  line-height: 1rem;
+  line-height: 1.25rem;
 }
 
 //large-screen typography
@@ -70,4 +70,10 @@
   font-size: 1rem;
   font-weight: 200;
   line-height: 1.25rem;
+}
+
+//element sizing
+@mixin full-size {
+  height: 100%;
+  width: 100%;
 }

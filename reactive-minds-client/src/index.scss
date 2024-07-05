@@ -14,11 +14,10 @@
 }
 
 #root {
+  @include full-size;
   background-color: $wild-sand;
   color: $scorpion;
   font-family: $primary-font;
-  height: 100vh;
-  width: 100vw;
 }
 
 //default element styles
