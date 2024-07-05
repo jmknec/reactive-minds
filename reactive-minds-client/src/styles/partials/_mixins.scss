@@ -16,14 +16,14 @@
 
 //mobile typography
 @mixin mobile-titles {
-  font-family: $primary-font;
+  font-family: $brand-font;
   font-size: 1.75rem;
   font-weight: 600;
   line-height: 1.875rem;
 }
 
 @mixin mobile-subtitles {
-  font-family: $primary-font;
+  font-family: $brand-font;
   font-size: 1.5rem;
   font-weight: 400;
   line-height: 1.75rem;
@@ -45,14 +45,14 @@
 
 //large-screen typography
 @mixin dt-titles {
-  font-family: $primary-font;
+  font-family: $brand-font;
   font-size: 2rem;
   font-weight: 600;
   line-height: 2.5rem;
 }
 
 @mixin dt-subtitles {
-  font-family: $primary-font;
+  font-family: $brand-font;
   font-size: 1.75rem;
   font-weight: 400;
   line-height: 2rem;

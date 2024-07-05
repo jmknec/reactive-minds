@@ -22,4 +22,29 @@
   font-display: fallback;
 }
 
+@font-face {
+  font-family: Lora, Georgia, Times, serif;
+  src: url("../../assets/fonts/Lora-Regular.ttf");
+  font-style: normal;
+  font-weight: 400;
+  font-display: fallback;
+}
+
+@font-face {
+  font-family: Lora, Georgia, Times, serif;
+  src: url("../../assets/fonts/Lora-Medium.ttf");
+  font-style: normal;
+  font-weight: 500;
+  font-display: fallback;
+}
+
+@font-face {
+  font-family: Lora, Georgia, Times, serif;
+  src: url("../../assets/fonts/Lora-Bold.ttf");
+  font-style: normal;
+  font-weight: 700;
+  font-display: fallback;
+}
+
+$brand-font: "Lora";
 $primary-font: "Avenir";
