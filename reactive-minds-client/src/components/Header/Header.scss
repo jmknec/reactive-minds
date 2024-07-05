@@ -5,28 +5,47 @@
 .header {
   display: flex;
   justify-content: space-between;
-  padding: 0.5rem;
-  border-bottom: 1px solid $scorpion;
+  align-items: flex-end;
+  padding: 0 0.5rem;
   width: 100%;
 
+  &__main-nav {
+    //TO DO: add dropdown menu for links to other pages
+    width: 50px;
+    visibility: hidden;
+  }
+
+  &__logo-container {
+    justify-self: center;
+  }
+
   &__link {
+    display: flex;
     text-decoration: none;
     color: $scorpion;
+
+    &--dt {
+      display: none;
+    }
   }
 
-  &__name {
-    @include mobile-body;
+  &__logo {
+    display: none;
   }
 
-  &__actions {
-    display: flex;
-    gap: 0.5rem;
+  &__logomark {
+    height: auto;
+    width: 70px;
   }
 
-  &__links {
+  &__button-container {
+    padding-bottom: 0.5rem;
+    width: fit-content;
+  }
+
+  &__button {
+    //TO DO: improve button styles
     @include mobile-cta-labels;
-    display: flex;
-    gap: 0.25rem;
-    list-style-type: none;
+    width: 50px;
   }
 }
