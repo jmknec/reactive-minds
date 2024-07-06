@@ -14,6 +14,7 @@ import logo from "../src/assets/icons-logos/rm-logo.svg";
 import icon from "../src/assets/icons-logos/rm-icon.svg";
 import ltIcon from "../src/assets/icons-logos/rm-icon-light.svg";
 import ltLogo from "../src/assets/icons-logos/rm-logo-light.svg";
+import StrategiesList from "./components/StrategiesList/StrategiesList";
 
 function App() {
   const user = {
@@ -29,6 +30,7 @@ function App() {
     <BrowserRouter>
       <CurrentUserContext.Provider value={{ currentUser, setCurrentUser }}>
         <Header logo={logo} icon={icon} />
+        {/* <StrategiesList /> */}
         <Routes>
           <Route path="/" element={<HomePage />}></Route>
           <Route path="/emotions" element={<EmotionStatePage />}></Route>

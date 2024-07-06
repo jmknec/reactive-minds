@@ -16,7 +16,7 @@ export default function UserStrategies() {
       name: "",
       type: "",
       description: "",
-      avg_rating: null,
+      avg_rating: 0,
       is_saved: false,
     },
   ]);
