@@ -1,0 +1,33 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/typography" as *;
+@use "../../styles/partials/variables" as *;
+
+.header {
+  &__icon {
+    height: auto;
+    width: 50px;
+
+    @include tablet {
+      display: none;
+    }
+  }
+
+  &__logo {
+    display: none;
+
+    @include tablet {
+      display: initial;
+      width: 175px;
+    }
+  }
+}
+
+.footer {
+  &__icon {
+    @extend .header__icon;
+  }
+
+  &__logo {
+    @extend .header__logo;
+  }
+}

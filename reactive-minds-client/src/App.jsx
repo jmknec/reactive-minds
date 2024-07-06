@@ -11,6 +11,9 @@ import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import ErrorPage from "./pages/ErrorPage/ErrorPage";
 import logo from "../src/assets/icons-logos/rm-logo.svg";
 import icon from "../src/assets/icons-logos/rm-icon.svg";
+import ltIcon from "../src/assets/icons-logos/rm-icon-light.svg";
+import ltLogo from "../src/assets/icons-logos/rm-logo-light.svg";
+import Footer from "./components/Footer/Footer";
 
 function App() {
   const user = {
@@ -34,6 +37,7 @@ function App() {
           <Route path="/profile" element={<ProfilePage />}></Route>
           <Route path="*" element={<ErrorPage />}></Route>
         </Routes>
+        <Footer icon={ltIcon} logo={ltLogo} />
       </CurrentUserContext.Provider>
     </BrowserRouter>
   );

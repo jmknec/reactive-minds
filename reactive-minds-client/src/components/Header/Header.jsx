@@ -1,9 +1,10 @@
 import { useContext } from "react";
+import { Link } from "react-router-dom";
 import "./Header.scss";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
-import { Link } from "react-router-dom";
+import Logo from "../Logos/Logos";
 
-export default function Header({ logo, icon }) {
+export default function Header({ icon, logo }) {
   const { currentUser, setCurrentUser } = useContext(CurrentUserContext);
 
   return (
@@ -12,18 +13,22 @@ export default function Header({ logo, icon }) {
         <nav className="header__main-nav">dropdown</nav>
         <div className="header__logo-container">
           <Link className="header__link header__link--dt" to={"/"}>
-            <img
-              className="header__logo"
-              src={logo}
-              alt="scribbled illustration of a brain with the words 'Reactive Minds"
-            />
+            {
+              <Logo
+                logoClass="header__logo"
+                src={logo}
+                altText="scribbled illustration of a brain with the works 'Reactive Minds'"
+              />
+            }
           </Link>
           <Link className="header__link header__link--mobile" to={"/"}>
-            <img
-              className="header__icon"
-              src={icon}
-              alt="scribbled illustration of a brain"
-            />
+            {
+              <Logo
+                logoClass="header__icon"
+                src={icon}
+                altText="scribbled illustration of a brain"
+              />
+            }
           </Link>
         </div>
         <div className="header__button-container">

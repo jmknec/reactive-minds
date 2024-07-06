@@ -61,24 +61,6 @@
     }
   }
 
-  &__logo {
-    display: none;
-
-    @include tablet {
-      display: initial;
-      width: 175px;
-    }
-  }
-
-  &__icon {
-    height: auto;
-    width: 50px;
-
-    @include tablet {
-      display: none;
-    }
-  }
-
   &__button-container {
     width: fit-content;
   }

@@ -1,0 +1,9 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/typography" as *;
+@use "../../styles/partials/variables" as *;
+
+.footer {
+  background-color: $nt-dark-scorpion;
+  width: 100%;
+  aspect-ratio: 5/2;
+}
