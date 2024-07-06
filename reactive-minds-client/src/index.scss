@@ -23,14 +23,22 @@
 
 //default element styles
 h1 {
-  @include mobile-titles;
+  @include mobile-site-titles;
 
   @include tablet {
-    @include dt-titles;
+    @include dt-site-titles;
   }
 }
 
-h2,
+h2 {
+  @include mobile-page-titles;
+  color: $p-dark-fun-green;
+
+  @include tablet {
+    @include dt-page-titles;
+  }
+}
+
 h3 {
   @include mobile-subtitles;
   color: $p-dark-fun-green;

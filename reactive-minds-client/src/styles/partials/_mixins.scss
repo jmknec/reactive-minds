@@ -15,16 +15,23 @@
 }
 
 //mobile typography
-@mixin mobile-titles {
+@mixin mobile-site-titles {
   font-family: $brand-font;
   font-size: 1.75rem;
   font-weight: 600;
-  line-height: 1.875rem;
+  line-height: 2rem;
+}
+
+@mixin mobile-page-titles {
+  font-family: $brand-font;
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.75rem;
 }
 
 @mixin mobile-subtitles {
-  font-family: $brand-font;
-  font-size: 1.5rem;
+  font-family: $primary-font;
+  font-size: 1.375rem;
   font-weight: 400;
   line-height: 1.75rem;
 }
@@ -44,16 +51,23 @@
 }
 
 //large-screen typography
-@mixin dt-titles {
+@mixin dt-site-titles {
   font-family: $brand-font;
   font-size: 2rem;
   font-weight: 600;
   line-height: 2.5rem;
 }
 
+@mixin dt-page-titles {
+  font-family: $brand-font;
+  font-size: 1.675rem;
+  font-weight: 600;
+  line-height: 2.25rem;
+}
+
 @mixin dt-subtitles {
   font-family: $brand-font;
-  font-size: 1.75rem;
+  font-size: 1.5rem;
   font-weight: 400;
   line-height: 2rem;
 }
