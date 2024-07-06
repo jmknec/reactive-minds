@@ -15,7 +15,7 @@ export default function Header({ icon, logo }) {
       <div className="header__container">
         <nav className="header__site-nav">
           <img
-            className="nav__menu-icon"
+            className="header__menu-icon"
             onClick={() => setOpen(!open)}
             src={Menu}
             alt="Three horizontal lines"

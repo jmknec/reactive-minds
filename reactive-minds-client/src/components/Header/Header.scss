@@ -30,7 +30,11 @@
   &__site-nav {
     //TO DO: add dropdown menu for links to other pages
     width: 50px;
-    // visibility: hidden;
+    position: relative;
+  }
+
+  &__menu-icon {
+    width: 20px;
   }
 
   &__logo-container {

@@ -1,10 +1,17 @@
+import DropdownOption from "../DropdownOption/DropdownOption";
 import "./DropdownMenu.scss";
 
 export default function DropdownMenu() {
   return (
-    <ul className="nav__menu">
-      <li className="nav__item">States</li>
-      <li className="nav__item">Tools</li>
+    <ul className="menu">
+      <DropdownOption
+        itemLink="/emotions"
+        itemText="Emotion Regulation States"
+      />
+      <DropdownOption
+        itemLink="/strategies"
+        itemText="Tools for Emotion Regulation"
+      />
     </ul>
   );
 }
