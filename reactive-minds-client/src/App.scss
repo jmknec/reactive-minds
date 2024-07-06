@@ -1,3 +1,22 @@
 @use "../src/styles/partials/mixins" as *;
 @use "../src/styles/partials/typography" as *;
 @use "../src/styles/partials/variables" as *;
+
+.page {
+  min-height: 100vh;
+  height: fit-content;
+  width: 100%;
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem;
+
+  @include tablet {
+    padding: 2.5rem 0;
+    gap: 1rem;
+  }
+}
