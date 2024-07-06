@@ -4,6 +4,17 @@
 
 .footer {
   background-color: $nt-dark-scorpion;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  gap: 0.5rem;
+  padding: 1rem;
   width: 100%;
   aspect-ratio: 5/2;
+
+  &__dev {
+    @include mobile-body;
+    font-size: 0.625rem;
+    color: $nt-light-albescent-white;
+  }
 }
