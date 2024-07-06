@@ -20,7 +20,7 @@ export default function Header({ icon, logo }) {
             src={Menu}
             alt="Three horizontal lines"
           />
-          {open && <DropdownMenu />}
+          {open && <DropdownMenu setOpen={setOpen} />}
         </nav>
         <div className="header__logo-container">
           <Link className="header__link header__link--dt" to={"/"}>

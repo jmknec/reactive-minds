@@ -28,9 +28,8 @@
   }
 
   &__site-nav {
-    //TO DO: add dropdown menu for links to other pages
-    width: 50px;
     position: relative;
+    flex: 1;
   }
 
   &__menu-icon {
@@ -38,8 +37,10 @@
   }
 
   &__logo-container {
-    justify-self: center;
+    display: flex;
+    justify-content: center;
     padding: 1rem 0;
+    flex: 1;
 
     @include tablet {
       padding: 0;
@@ -66,7 +67,10 @@
   }
 
   &__button-container {
+    display: flex;
+    justify-content: flex-end;
     width: fit-content;
+    flex: 1;
   }
 
   &__button {
