@@ -1,16 +1,27 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import "./Header.scss";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import DropdownMenu from "../DropdownMenu/DropdownMenu";
 import Logo from "../Logos/Logos";
+import Menu from "../../assets/icons-logos/menu-icon.svg";
 
 export default function Header({ icon, logo }) {
   const { currentUser, setCurrentUser } = useContext(CurrentUserContext);
+  const [open, setOpen] = useState(false);
 
   return (
     <header className="header">
       <div className="header__container">
-        <nav className="header__main-nav">dropdown</nav>
+        <nav className="header__site-nav">
+          <img
+            className="nav__menu-icon"
+            onClick={() => setOpen(!open)}
+            src={Menu}
+            alt="Three horizontal lines"
+          />
+          {open && <DropdownMenu />}
+        </nav>
         <div className="header__logo-container">
           <Link className="header__link header__link--dt" to={"/"}>
             {
