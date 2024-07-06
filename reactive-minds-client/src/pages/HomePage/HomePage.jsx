@@ -3,7 +3,7 @@ import HeroBanner from "../../components/HeroBanner/HeroBanner";
 
 export default function HomePage() {
   return (
-    <main className="page">
+    <main className="page page--home">
       <HeroBanner title="Welcome to Reactive Minds" />
       <div className="about">
         <p className="about__description">

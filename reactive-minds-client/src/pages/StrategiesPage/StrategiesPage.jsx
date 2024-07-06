@@ -1,9 +1,10 @@
+import HeroBanner from "../../components/HeroBanner/HeroBanner";
 import "./StrategiesPage.scss";
 
-export default function StrategiesPage() {
+export default function EmotionStatePage() {
   return (
-    <>
-      <h1>Reactive Minds</h1>
-    </>
+    <main className="page page--tools">
+      <HeroBanner title="Tools for Regulation" />
+    </main>
   );
 }

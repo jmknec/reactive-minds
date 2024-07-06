@@ -9,11 +9,11 @@ import StrategiesPage from "./pages/StrategiesPage/StrategiesPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import ErrorPage from "./pages/ErrorPage/ErrorPage";
+import Footer from "./components/Footer/Footer";
 import logo from "../src/assets/icons-logos/rm-logo.svg";
 import icon from "../src/assets/icons-logos/rm-icon.svg";
 import ltIcon from "../src/assets/icons-logos/rm-icon-light.svg";
 import ltLogo from "../src/assets/icons-logos/rm-logo-light.svg";
-import Footer from "./components/Footer/Footer";
 
 function App() {
   const user = {

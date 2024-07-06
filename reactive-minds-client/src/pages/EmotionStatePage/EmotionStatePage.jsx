@@ -1,10 +1,11 @@
+import HeroBanner from "../../components/HeroBanner/HeroBanner";
 import "./EmotionStatePage.scss";
 
 export default function EmotionStatePage() {
   return (
-    <>
-      <h1>Reactive Minds</h1>
-      <h2>Emotions</h2>
-    </>
+    <main className="page page--states">
+      <HeroBanner title="Reactive States" />
+      <section className="cards"></section>
+    </main>
   );
 }
