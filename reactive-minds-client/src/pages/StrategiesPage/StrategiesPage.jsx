@@ -18,7 +18,7 @@ export default function EmotionStatePage() {
           reactivity, these tools are tailored to provide the right support at
           the right time.
         </p>
-        <Link className="link" to={""}>
+        <Link className="link" to={"/grounding"}>
           <h3 className="text__subheading text__subheading--tools">
             Grounding Strategies for High Reactivity
           </h3>
@@ -31,7 +31,7 @@ export default function EmotionStatePage() {
           immediate relief and help your child regain control over their
           emotions.
         </p>
-        <Link className="link" to={""}>
+        <Link className="link" to={"/uplifting"}>
           <h3 className="text__subheading text__subheading--tools">
             Uplifting Strategies for Low Reactivity
           </h3>
@@ -44,7 +44,7 @@ export default function EmotionStatePage() {
           elevate their mood, fostering a sense of engagement and emotional
           responsiveness.
         </p>
-        <Link className="link" to={""}>
+        <Link className="link" to={"/all-strategies"}>
           <h3 className="text__subheading text__subheading--tools">
             Practicing for Regulation
           </h3>

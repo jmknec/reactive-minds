@@ -1,11 +1,14 @@
 import { useEffect, useContext, useState } from "react";
+import { useLocation } from "react-router-dom";
 import axios from "axios";
 import "./StrategiesList.scss";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import Strategy from "../Strategy/Strategy";
+import HeroBanner from "../HeroBanner/HeroBanner";
 
 export default function StrategiesList() {
   const baseUrl = import.meta.env.VITE_API_URL;
+  const location = useLocation().pathname.slice(1);
   const { currentUser } = useContext(CurrentUserContext);
   const [strategies, setStrategies] = useState([
     {
@@ -17,17 +20,17 @@ export default function StrategiesList() {
       avg_rating: 0,
     },
   ]);
-  const [userStrategies, setUserStrategies] = useState([
-    {
-      id: null,
-      name: "",
-      type: "",
-      description: "",
-      emotional_state: "",
-      avg_rating: 0,
-      is_saved: false,
-    },
-  ]);
+  // const [userStrategies, setUserStrategies] = useState([
+  //   {
+  //     id: null,
+  //     name: "",
+  //     type: "",
+  //     description: "",
+  //     emotional_state: "",
+  //     avg_rating: 0,
+  //     is_saved: false,
+  //   },
+  // ]);
 
   useEffect(() => {
     const getStrategies = async () => {
@@ -37,28 +40,92 @@ export default function StrategiesList() {
     getStrategies();
   }, []);
 
+  if (location === "grounding") {
+    return (
+      <main className="page page--tools">
+        <HeroBanner title="Grounding Tools" />
+        <div className="strategies">
+          <div className="strategies__fields">
+            <h3 className="strategies__field">Name</h3>
+            <h3 className="strategies__field">Description</h3>
+            <h3 className="strategies__field">Average Rating</h3>
+          </div>
+          {strategies
+            .filter((strategy) => {
+              return strategy.type == location;
+            })
+            .map((strategy, index) => {
+              return (
+                <Strategy
+                  key={index}
+                  id={strategy.id}
+                  tool={strategy.name}
+                  effect={strategy.type}
+                  description={strategy.description}
+                  state={strategy.emotional_state}
+                  rating={strategy.avg_rating}
+                />
+              );
+            })}
+        </div>
+      </main>
+    );
+  }
+  if (location === "uplifting") {
+    return (
+      <main className="page page--tools">
+        <HeroBanner title="Tools to Uplift" />
+        <div className="strategies">
+          <div className="strategies__fields">
+            <h3 className="strategies__field">Name</h3>
+            <h3 className="strategies__field">Description</h3>
+            <h3 className="strategies__field">Average Rating</h3>
+          </div>
+          {strategies
+            .filter((strategy) => {
+              return strategy.type == location;
+            })
+            .map((strategy, index) => {
+              return (
+                <Strategy
+                  key={index}
+                  id={strategy.id}
+                  tool={strategy.name}
+                  effect={strategy.type}
+                  description={strategy.description}
+                  state={strategy.emotional_state}
+                  rating={strategy.avg_rating}
+                />
+              );
+            })}
+        </div>
+      </main>
+    );
+  }
   return (
-    <div className="strategies">
-      <h2 className="strategies__title">Global Strategies</h2>
-      <div className="strategies__fields">
-        <h3 className="strategies__field">Tool</h3>
-        <h3 className="strategies__field">Effect</h3>
-        <h3 className="strategies__field">Description</h3>
-        <h3 className="strategies__field">Average Rating</h3>
+    <main className="page page--tools">
+      <HeroBanner title="All Strategies" />
+      <div className="strategies">
+        <div className="strategies__fields">
+          <h3 className="strategies__field">Name</h3>
+          <h3 className="strategies__field">Effect</h3>
+          <h3 className="strategies__field">Description</h3>
+          <h3 className="strategies__field">Average Rating</h3>
+        </div>
+        {strategies.map((strategy, index) => {
+          return (
+            <Strategy
+              key={index}
+              id={strategy.id}
+              tool={strategy.name}
+              effect={strategy.type}
+              description={strategy.description}
+              state={strategy.emotional_state}
+              rating={strategy.avg_rating}
+            />
+          );
+        })}
       </div>
-      {strategies.map((strategy, index) => {
-        return (
-          <Strategy
-            key={index}
-            id={strategy.id}
-            tool={strategy.name}
-            effect={strategy.type}
-            description={strategy.description}
-            state={strategy.emotional_state}
-            rating={strategy.avg_rating}
-          />
-        );
-      })}
-    </div>
+    </main>
   );
 }
