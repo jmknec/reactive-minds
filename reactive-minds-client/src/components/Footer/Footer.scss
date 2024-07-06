@@ -7,14 +7,35 @@
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
-  gap: 0.5rem;
   padding: 1rem;
   width: 100%;
   aspect-ratio: 5/2;
+
+  @include tablet {
+    aspect-ratio: 6/1;
+    padding: 1.5rem 2.5rem;
+  }
+
+  @include desktop {
+    aspect-ratio: 10/1;
+    padding: 2rem 10rem;
+  }
+
+  &__container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    gap: 1rem;
+    max-width: 1280px;
+  }
 
   &__dev {
     @include mobile-body;
     font-size: 0.625rem;
     color: $nt-light-albescent-white;
+
+    @include tablet {
+      @include dt-body;
+    }
   }
 }
