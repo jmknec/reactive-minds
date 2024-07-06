@@ -8,34 +8,36 @@ export default function Header({ logo, icon }) {
 
   return (
     <header className="header">
-      <nav className="header__main-nav">dropdown</nav>
-      <div className="header__logo-container">
-        <Link className="header__link header__link--dt" to={"/"}>
-          <img
-            className="header__logo"
-            src={logo}
-            alt="scribbled illustration of a brain with the words 'Reactive Minds"
-          />
-        </Link>
-        <Link className="header__link header__link--mobile" to={"/"}>
-          <img
-            className="header__icon"
-            src={icon}
-            alt="scribbled illustration of a brain"
-          />
-        </Link>
-      </div>
-      <div className="header__button-container">
-        {currentUser ? (
-          <button
-            className="header__button"
-            onClick={() => setCurrentUser(null)}
-          >
-            Log Out
-          </button>
-        ) : (
-          <button className="header__button">Log In</button>
-        )}
+      <div className="header__container">
+        <nav className="header__main-nav">dropdown</nav>
+        <div className="header__logo-container">
+          <Link className="header__link header__link--dt" to={"/"}>
+            <img
+              className="header__logo"
+              src={logo}
+              alt="scribbled illustration of a brain with the words 'Reactive Minds"
+            />
+          </Link>
+          <Link className="header__link header__link--mobile" to={"/"}>
+            <img
+              className="header__icon"
+              src={icon}
+              alt="scribbled illustration of a brain"
+            />
+          </Link>
+        </div>
+        <div className="header__button-container">
+          {currentUser ? (
+            <button
+              className="header__button"
+              onClick={() => setCurrentUser(null)}
+            >
+              Log Out
+            </button>
+          ) : (
+            <button className="header__button">Log In</button>
+          )}
+        </div>
       </div>
     </header>
   );

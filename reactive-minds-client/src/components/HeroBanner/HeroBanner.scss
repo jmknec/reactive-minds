@@ -22,15 +22,32 @@
     );
     filter: contrast(80%);
     display: flex;
+    justify-content: flex-start;
     align-items: center;
-    padding: 0 1rem;
-    height: clamp(175px, 25%, 250px);
+    padding-left: 1rem;
     width: 100%;
+    aspect-ratio: 3/2;
+    position: sticky;
+    //TO DO: improve responsiveness sticky scroll
+    top: -25%;
 
     @include tablet {
-      padding: 0 2.5rem;
-      height: clamp(225px, 50%, 350px);
+      padding-left: 2.5rem;
+      aspect-ratio: 2/1;
+      top: -30%;
     }
+
+    @include desktop {
+      padding-left: 0;
+      padding-left: 7.5rem;
+      aspect-ratio: 7/3;
+      justify-content: center;
+    }
+  }
+
+  &__title-container {
+    width: 100%;
+    max-width: calc(1280px - 7.5rem);
   }
 
   &__title {

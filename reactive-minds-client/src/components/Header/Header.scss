@@ -3,14 +3,28 @@
 @use "../../styles/partials/variables" as *;
 
 .header {
+  background-color: $nb-wild-sand;
   display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
+  justify-content: center;
+  position: sticky;
+  top: 3px;
   padding: 0 0.5rem;
   width: 100%;
+  z-index: 1;
 
   @include tablet {
     padding: 1.25rem 2.5rem;
+  }
+
+  &__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+
+    @include desktop {
+      max-width: 1280px;
+    }
   }
 
   &__main-nav {
@@ -66,12 +80,7 @@
   }
 
   &__button-container {
-    padding-bottom: 0.5rem;
     width: fit-content;
-
-    @include tablet {
-      padding: 0;
-    }
   }
 
   &__button {
