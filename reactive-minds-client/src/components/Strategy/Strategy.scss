@@ -23,4 +23,9 @@
       display: initial;
     }
   }
+
+  &__user-icons {
+    display: flex;
+    justify-content: flex-end;
+  }
 }
