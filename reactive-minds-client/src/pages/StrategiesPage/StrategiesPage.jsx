@@ -46,7 +46,7 @@ export default function EmotionStatePage() {
         </p>
         <Link className="link" to={"/all-strategies"}>
           <h3 className="text__subheading text__subheading--tools">
-            Practicing for Regulation
+            Practice During Periods of Balanced Regulation
           </h3>
         </Link>
         <p className="text__description text__description--tools">

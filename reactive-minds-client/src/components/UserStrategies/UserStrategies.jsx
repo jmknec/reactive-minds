@@ -14,7 +14,7 @@ export default function UserStrategies() {
     {
       id: null,
       name: "",
-      type: "",
+      effect: "",
       description: "",
       avg_rating: 0,
       is_saved: false,

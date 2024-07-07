@@ -13,7 +13,7 @@ export default function FormInput(props) {
         className="form__input"
         id={id}
         name={name}
-        type="text"
+        effect="text"
         placeholder={placeholder}
         onChange={onChange}
         value={value}

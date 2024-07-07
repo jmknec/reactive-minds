@@ -1,3 +1,26 @@
 @use "../../styles/partials/mixins" as *;
 @use "../../styles/partials/typography" as *;
 @use "../../styles/partials/variables" as *;
+
+.tool {
+  padding: 0.75rem 0;
+  border-bottom: 0.5px solid $p-dark-fun-green;
+
+  &__details {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 0.25rem;
+  }
+
+  &__name {
+    font-size: 1.125rem;
+  }
+
+  &__description {
+    display: none;
+
+    @include tablet {
+      display: initial;
+    }
+  }
+}

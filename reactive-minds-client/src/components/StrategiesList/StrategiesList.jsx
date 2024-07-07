@@ -2,19 +2,20 @@ import { useEffect, useContext, useState } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
 import "./StrategiesList.scss";
-import { CurrentUserContext } from "../../contexts/CurrentUserContext";
-import Strategy from "../Strategy/Strategy";
+// import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import HeroBanner from "../HeroBanner/HeroBanner";
+import Strategy from "../Strategy/Strategy";
 
 export default function StrategiesList() {
   const baseUrl = import.meta.env.VITE_API_URL;
   const location = useLocation().pathname.slice(1);
-  const { currentUser } = useContext(CurrentUserContext);
+  // console.log(location);
+  // const { currentUser } = useContext(CurrentUserContext);
   const [strategies, setStrategies] = useState([
     {
       id: null,
       name: "",
-      type: "",
+      effect: "",
       description: "",
       emotional_state: "",
       avg_rating: 0,
@@ -24,7 +25,7 @@ export default function StrategiesList() {
   //   {
   //     id: null,
   //     name: "",
-  //     type: "",
+  //     effect: "",
   //     description: "",
   //     emotional_state: "",
   //     avg_rating: 0,
@@ -39,6 +40,7 @@ export default function StrategiesList() {
     };
     getStrategies();
   }, []);
+  // console.log(location, strategies[0], strategies[0].effect.toLowerCase());
 
   if (location === "grounding") {
     return (
@@ -52,7 +54,7 @@ export default function StrategiesList() {
           </div>
           {strategies
             .filter((strategy) => {
-              return strategy.type == location;
+              return strategy.effect.toLowerCase() == location;
             })
             .map((strategy, index) => {
               return (
@@ -60,7 +62,7 @@ export default function StrategiesList() {
                   key={index}
                   id={strategy.id}
                   tool={strategy.name}
-                  effect={strategy.type}
+                  effect={strategy.effect}
                   description={strategy.description}
                   state={strategy.emotional_state}
                   rating={strategy.avg_rating}
@@ -83,7 +85,7 @@ export default function StrategiesList() {
           </div>
           {strategies
             .filter((strategy) => {
-              return strategy.type == location;
+              return strategy.effect == location;
             })
             .map((strategy, index) => {
               return (
@@ -91,7 +93,7 @@ export default function StrategiesList() {
                   key={index}
                   id={strategy.id}
                   tool={strategy.name}
-                  effect={strategy.type}
+                  effect={strategy.effect}
                   description={strategy.description}
                   state={strategy.emotional_state}
                   rating={strategy.avg_rating}
@@ -118,7 +120,7 @@ export default function StrategiesList() {
               key={index}
               id={strategy.id}
               tool={strategy.name}
-              effect={strategy.type}
+              effect={strategy.effect}
               description={strategy.description}
               state={strategy.emotional_state}
               rating={strategy.avg_rating}
