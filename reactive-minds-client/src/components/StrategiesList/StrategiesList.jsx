@@ -8,7 +8,7 @@ import Strategy from "../Strategy/Strategy";
 
 export default function StrategiesList() {
   const baseUrl = import.meta.env.VITE_API_URL;
-  const location = useLocation().pathname.slice(1);
+  let location = useLocation().pathname.slice(1);
   // console.log(location);
   // const { currentUser } = useContext(CurrentUserContext);
   const [strategies, setStrategies] = useState([
@@ -40,7 +40,6 @@ export default function StrategiesList() {
     };
     getStrategies();
   }, []);
-  // console.log(location, strategies[0], strategies[0].effect.toLowerCase());
 
   if (location === "grounding") {
     return (
@@ -85,7 +84,7 @@ export default function StrategiesList() {
           </div>
           {strategies
             .filter((strategy) => {
-              return strategy.effect == location;
+              return strategy.effect.toLowerCase() == location;
             })
             .map((strategy, index) => {
               return (
