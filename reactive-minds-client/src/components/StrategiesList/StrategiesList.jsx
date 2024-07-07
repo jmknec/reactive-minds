@@ -4,7 +4,7 @@ import axios from "axios";
 import "./StrategiesList.scss";
 // import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import HeroBanner from "../HeroBanner/HeroBanner";
-import Strategy from "../Strategy/Strategy";
+import StrategyCard from "../StrategyCard/StrategyCard";
 
 export default function StrategiesList() {
   const baseUrl = import.meta.env.VITE_API_URL;
@@ -41,54 +41,22 @@ export default function StrategiesList() {
     getStrategies();
   }, []);
 
-  if (location === "grounding") {
+  if (location === "grounding" || location === "uplifting") {
     return (
       <main className="page page--tools">
-        <HeroBanner title="Grounding Tools" />
+        {location === "grounding" ? (
+          <HeroBanner title="Grounding Tools" />
+        ) : (
+          <HeroBanner title="Tools to Uplift" />
+        )}
         <div className="strategies">
-          <div className="strategies__fields">
-            <h3 className="strategies__field">Name</h3>
-            <h3 className="strategies__field">Description</h3>
-            <h3 className="strategies__field">Average Rating</h3>
-          </div>
           {strategies
             .filter((strategy) => {
               return strategy.effect.toLowerCase() == location;
             })
             .map((strategy, index) => {
               return (
-                <Strategy
-                  key={index}
-                  id={strategy.id}
-                  tool={strategy.name}
-                  effect={strategy.effect}
-                  description={strategy.description}
-                  state={strategy.emotional_state}
-                  rating={strategy.avg_rating}
-                />
-              );
-            })}
-        </div>
-      </main>
-    );
-  }
-  if (location === "uplifting") {
-    return (
-      <main className="page page--tools">
-        <HeroBanner title="Tools to Uplift" />
-        <div className="strategies">
-          <div className="strategies__fields">
-            <h3 className="strategies__field">Name</h3>
-            <h3 className="strategies__field">Description</h3>
-            <h3 className="strategies__field">Average Rating</h3>
-          </div>
-          {strategies
-            .filter((strategy) => {
-              return strategy.effect.toLowerCase() == location;
-            })
-            .map((strategy, index) => {
-              return (
-                <Strategy
+                <StrategyCard
                   key={index}
                   id={strategy.id}
                   tool={strategy.name}
@@ -115,7 +83,7 @@ export default function StrategiesList() {
         </div>
         {strategies.map((strategy, index) => {
           return (
-            <Strategy
+            <StrategyCard
               key={index}
               id={strategy.id}
               tool={strategy.name}

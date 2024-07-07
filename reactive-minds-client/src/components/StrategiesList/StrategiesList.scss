@@ -7,7 +7,7 @@
   flex-direction: column;
   padding: 1rem;
 
-  &__fields {
-    display: none;
+  @include tablet {
+    padding: 2.5rem;
   }
 }

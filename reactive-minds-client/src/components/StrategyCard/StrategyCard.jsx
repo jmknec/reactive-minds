@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import "./Strategy.scss";
+import "./StrategyCard.scss";
 import { sentenceCase, normalize } from "../../utils/utils";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import UserIcons from "../UserIcons/UserIcons";

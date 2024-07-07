@@ -16,6 +16,12 @@
     font-size: 1.125rem;
   }
 
+  &__cande {
+    @include tablet {
+      display: none;
+    }
+  }
+
   &__description {
     display: none;
 
