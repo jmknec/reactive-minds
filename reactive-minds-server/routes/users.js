@@ -60,7 +60,7 @@ router.route("/login").post(async (req, res) => {
     res.status(500).json({ token: "", message: "Error logging in." });
   }
 });
-//user's saved tools
+//user's bookmarked tools
 router
   .route("/:id/tools")
   .get(async (req, res) => {
@@ -73,20 +73,20 @@ router
           "tools.effect",
           "tools.description",
           "tools.avg_rating",
-          "users_tools.is_saved"
+          "users_tools.is_bookmarked"
         )
         .from("users_tools")
         .join("users", "users_tools.user_id", "=", "users.id")
         .join("tools", "users_tools.tool_id", "=", "tools.id")
         .where("users_tools.user_id", id)
-        .andWhere("is_saved", true);
+        .andWhere("is_bookmarked", true);
       if (userTools.length < 1) {
-        return res.status(404).send("No tools associated with this user");
+        return res.status(404).send("User has no bookmarked tools");
       }
       console.log(userTools.length);
       res.json(userTools);
     } catch {
-      return res.status(500).send("Error getting user tools");
+      return res.status(500).send("Error getting user's bookmarked tools");
     }
   })
   .post(async (req, res) => {
@@ -99,24 +99,42 @@ router
         .andWhere("tool_id", tool_id);
       if (userTool.length != 0) {
         const savedId = userTool[0].id;
-        await knex("users_tools").where("id", savedId).update({ is_saved: 0 });
+        await knex("users_tools")
+          .where("id", savedId)
+          .update({ is_bookmarked: 0 });
         return res
           .status(204)
-          .json({ message: "Tool removed from user account", savedId });
+          .json({ message: "Bookmark removed by user", savedId });
       } else {
         const savedTool = {
           user_id,
           tool_id,
-          is_saved: 1,
+          is_bookmarked: 1,
         };
         await knex("users_tools").insert(savedTool);
         res
           .status(201)
-          .json({ message: "Tool saved to user account", savedTool });
+          .json({ message: "Tool successfully bookmarked by user", savedTool });
       }
     } catch {
-      return res.status(500).send("Error saving tool to user's account");
+      return res.status(500).send("Error bookmarking tool for user's account");
     }
   });
+//
+router.route("/:id/tracking").get(async (req, res) => {
+  const userId = req.params.id;
+  try {
+    const trackedTools = await knex
+      .select("*")
+      .from("tool_usage")
+      .where("user_id", userId);
+    if (trackedTools.length < 1) {
+      return res.status(404).send("Unable to find user's tracked tool usage");
+    }
+    return res.json(trackedTools);
+  } catch {
+    return res.status(500).send("Error getting user's tracking data");
+  }
+});
 
 export default router;
