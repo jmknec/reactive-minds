@@ -56,37 +56,67 @@ router.route("/login").post(async (req, res) => {
       token: "",
       message: "Incorrect password.",
     });
-  } catch (error) {
-    console.error(error);
+  } catch {
     res.status(500).json({ token: "", message: "Error logging in." });
   }
 });
-//get user's tools
-router.route("/:id/tools").get(async (req, res) => {
-  const id = req.params.id;
-  try {
-    const userTools = await knex
-      .select(
-        "tools.id",
-        "tools.name",
-        "tools.effect",
-        "tools.description",
-        "tools.avg_rating",
-        "users_tools.is_saved"
-      )
-      .from("users_tools")
-      .join("users", "users_tools.user_id", "=", "users.id")
-      .join("tools", "users_tools.tool_id", "=", "tools.id")
-      .where("users_tools.user_id", id);
-    if (userTools.length < 1) {
-      return res.status(404).send("No tools associated with this user");
+//user's saved tools
+router
+  .route("/:id/tools")
+  .get(async (req, res) => {
+    const id = req.params.id;
+    try {
+      const userTools = await knex
+        .select(
+          "tools.id",
+          "tools.name",
+          "tools.effect",
+          "tools.description",
+          "tools.avg_rating",
+          "users_tools.is_saved"
+        )
+        .from("users_tools")
+        .join("users", "users_tools.user_id", "=", "users.id")
+        .join("tools", "users_tools.tool_id", "=", "tools.id")
+        .where("users_tools.user_id", id)
+        .andWhere("is_saved", true);
+      if (userTools.length < 1) {
+        return res.status(404).send("No tools associated with this user");
+      }
+      console.log(userTools.length);
+      res.json(userTools);
+    } catch {
+      return res.status(500).send("Error getting user tools");
     }
-    console.log(userTools.length);
-    res.json(userTools);
-  } catch (error) {
-    console.error(error);
-    return res.status(500).send("Error getting user tools");
-  }
-});
+  })
+  .post(async (req, res) => {
+    const user_id = req.params.id;
+    const { tool_id } = req.body;
+
+    try {
+      const userTool = await knex("users_tools")
+        .where("user_id", user_id)
+        .andWhere("tool_id", tool_id);
+      if (userTool.length != 0) {
+        const savedId = userTool[0].id;
+        await knex("users_tools").where("id", savedId).update({ is_saved: 0 });
+        return res
+          .status(204)
+          .json({ message: "Tool removed from user account", savedId });
+      } else {
+        const savedTool = {
+          user_id,
+          tool_id,
+          is_saved: 1,
+        };
+        await knex("users_tools").insert(savedTool);
+        res
+          .status(201)
+          .json({ message: "Tool saved to user account", savedTool });
+      }
+    } catch {
+      return res.status(500).send("Error saving tool to user's account");
+    }
+  });
 
 export default router;
