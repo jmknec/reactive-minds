@@ -20,45 +20,22 @@ export default function Strategy(props) {
     )}`;
   };
 
-  if (effect === "Grounding") {
-    return (
-      <div className="tool tool--grounding">
-        <div className="tool__details tool__details--grounding">
-          <h3 className="tool__name tool__name--grounding">{tool}</h3>
-          <p className="tool__rating tool__rating--grounding">{`${rating} ☆`}</p>
-        </div>
-        <div className="tool__container tool__container--grounding">
-          <div className="tool__text tool__text--grounding">
-            <p className="tool__cande tool__cande--grounding">
-              {groundingSentence()}
-            </p>
-            <p className="tool__description tool__description--grounding">
-              {description}
-            </p>
-          </div>
-          <div className="tool__user-icons tool__user-icons--">
-            {currentUser ? <UserIcons /> : null}
-          </div>
-        </div>
-      </div>
-    );
-  }
   return (
-    <div className="tool tool--grounding">
-      <div className="tool__details tool__details--grounding">
-        <h3 className="tool__name tool__name--grounding">{tool}</h3>
-        <p className="tool__rating tool__rating--grounding">{`${rating} ☆`}</p>
+    <div className="tool">
+      <div className="tool__details">
+        <h3 className="tool__name">{tool}</h3>
+        <p className="tool__rating">{`${rating} ☆`}</p>
       </div>
-      <div className="tool__container tool__container--grounding">
-        <div className="tool__text tool__text--grounding">
-          <p className="tool__cande tool__cande--grounding">
-            {upliftingSentence()}
-          </p>
-          <p className="tool__description tool__description--grounding">
-            {description}
-          </p>
+      <div className="tool__container">
+        <div className="tool__text">
+          {effect === "Grounding" ? (
+            <p className="tool__cande">{groundingSentence()}</p>
+          ) : (
+            <p className="tool__cande">{upliftingSentence()}</p>
+          )}
+          <p className="tool__description">{description}</p>
         </div>
-        <div className="tool__user-icons tool__user-icons--">
+        <div className="tool__user-icons">
           {currentUser ? <UserIcons /> : null}
         </div>
       </div>
