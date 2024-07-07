@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import "./UserStrategies.scss";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
-import StrategiesList from "../StrategiesList/StrategiesList";
+import StrategiesList from "../ToolsList/ToolsList";
 
 const baseUrl = import.meta.env.VITE_API_URL;
 

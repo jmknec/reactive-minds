@@ -1,10 +1,10 @@
 import { useContext } from "react";
-import "./StrategyCard.scss";
+import "./ToolCard.scss";
 import { sentenceCase, normalize } from "../../utils/utils";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import UserIcons from "../UserIcons/UserIcons";
 
-export default function Strategy(props) {
+export default function ToolCard(props) {
   const { id, tool, effect, description, state, rating } = props;
   const { currentUser } = useContext(CurrentUserContext);
   const groundingSentence = () => {

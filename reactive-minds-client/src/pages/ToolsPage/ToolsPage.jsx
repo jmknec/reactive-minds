@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
-import "./StrategiesPage.scss";
+import "./ToolsPage.scss";
 import HeroBanner from "../../components/HeroBanner/HeroBanner";
 
-export default function EmotionStatePage() {
+export default function ToolsPage() {
   return (
     <main className="page page--tools">
       <HeroBanner title="Tools for Emotion Regulation" />

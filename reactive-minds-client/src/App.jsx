@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.scss";
+import routes from "./router/router";
 import { CurrentUserContext } from "./contexts/CurrentUserContext";
 import Header from "./components/Header/Header";
 import HomePage from "./pages/HomePage/HomePage";
 import EmotionStatePage from "./pages/EmotionStatePage/EmotionStatePage";
-import StrategiesPage from "./pages/StrategiesPage/StrategiesPage";
-import StrategiesList from "./components/StrategiesList/StrategiesList";
+import StrategiesPage from "./pages/ToolsPage/ToolsPage";
+import StrategiesList from "./components/ToolsList/ToolsList";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import ErrorPage from "./pages/ErrorPage/ErrorPage";
@@ -31,15 +32,14 @@ function App() {
       <CurrentUserContext.Provider value={{ currentUser, setCurrentUser }}>
         <Header logo={logo} icon={icon} />
         <Routes>
-          <Route path="/" element={<HomePage />}></Route>
-          <Route path="/emotions" element={<EmotionStatePage />}></Route>
-          <Route path="/strategies" element={<StrategiesPage />}></Route>
-          <Route path="/all-strategies" element={<StrategiesList />}></Route>
-          <Route path="/grounding" element={<StrategiesList />}></Route>
-          <Route path="/uplifting" element={<StrategiesList />}></Route>
-          <Route path="/users/login" element={<LoginPage />}></Route>
-          <Route path="/profile" element={<ProfilePage />}></Route>
-          <Route path="*" element={<ErrorPage />}></Route>
+          {routes.map((route, index) => (
+            <Route
+              key={index}
+              route={route.name}
+              path={route.path}
+              element={<route.component />}
+            />
+          ))}
         </Routes>
         <Footer icon={ltIcon} logo={ltLogo} />
       </CurrentUserContext.Provider>
