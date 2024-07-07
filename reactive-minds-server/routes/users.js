@@ -120,7 +120,7 @@ router
       return res.status(500).send("Error bookmarking tool for user's account");
     }
   });
-//
+//get all usage-tracking data for user
 router.route("/:id/tracking").get(async (req, res) => {
   const userId = req.params.id;
   try {
@@ -136,5 +136,50 @@ router.route("/:id/tracking").get(async (req, res) => {
     return res.status(500).send("Error getting user's tracking data");
   }
 });
+//get user's usage-tracking data for individual tool
+router
+  .route("/:id/tracking/:toolId")
+  .get(async (req, res) => {
+    const userId = req.params.id;
+    const toolId = req.params.toolId;
+    try {
+      const trackedTool = await knex
+        .select("*")
+        .from("tool_usage")
+        .where("user_id", userId)
+        .andWhere("tool_id", toolId);
+      if (trackedTool.length < 1) {
+        return res
+          .status(404)
+          .send("Unable to find user's tracking data for this tool");
+      }
+      return res.json(trackedTool);
+    } catch {
+      return res.status(500).send("Error getting user's tracking data");
+    }
+  })
+  .post(async (req, res) => {
+    const user_id = req.params.id;
+    const tool_id = req.params.toolId;
+    const { reactive_state, regulated_state, usage_rating } = req.body;
+
+    try {
+      const toolTracked = {
+        user_id,
+        tool_id,
+        reactive_state,
+        regulated_state,
+        usage_rating,
+      };
+      await knex("tool_usage").insert(toolTracked);
+      return res.status(201).json({
+        message: "Usage tracking data successfully added",
+        toolTracked,
+      });
+    } catch (error) {
+      console.error(error);
+      return res.status(500).send("Error adding tracking data");
+    }
+  });
 
 export default router;
