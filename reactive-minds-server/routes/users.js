@@ -61,31 +61,31 @@ router.route("/login").post(async (req, res) => {
     res.status(500).json({ token: "", message: "Error logging in." });
   }
 });
-//get user's strategies
-router.route("/:id/strategies").get(async (req, res) => {
+//get user's tools
+router.route("/:id/tools").get(async (req, res) => {
   const id = req.params.id;
   try {
-    const userStrategies = await knex
+    const userTools = await knex
       .select(
-        "strategies.id",
-        "strategies.name",
-        "strategies.type",
-        "strategies.description",
-        "strategies.avg_rating",
-        "users_strategies.is_saved"
+        "tools.id",
+        "tools.name",
+        "tools.effect",
+        "tools.description",
+        "tools.avg_rating",
+        "users_tools.is_saved"
       )
-      .from("users_strategies")
-      .join("users", "users_strategies.user_id", "=", "users.id")
-      .join("strategies", "users_strategies.strategy_id", "=", "strategies.id")
-      .where("users_strategies.user_id", id);
-    if (userStrategies.length < 1) {
-      return res.status(404).send("No strategies associated with this user");
+      .from("users_tools")
+      .join("users", "users_tools.user_id", "=", "users.id")
+      .join("tools", "users_tools.tool_id", "=", "tools.id")
+      .where("users_tools.user_id", id);
+    if (userTools.length < 1) {
+      return res.status(404).send("No tools associated with this user");
     }
-    console.log(userStrategies.length);
-    res.json(userStrategies);
+    console.log(userTools.length);
+    res.json(userTools);
   } catch (error) {
     console.error(error);
-    return res.status(500).send("Error getting user strategies");
+    return res.status(500).send("Error getting user tools");
   }
 });
 
