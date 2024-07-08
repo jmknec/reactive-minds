@@ -19,16 +19,16 @@ export default function ToolsList() {
       avg_rating: 0,
     },
   ]);
-  const [userTools, setUserTools] = useState([
-    {
-      id: null,
-      name: "",
-      effect: "",
-      description: "",
-      avg_rating: 0,
-      is_saved: false,
-    },
-  ]);
+  // const [userTools, setUserTools] = useState([
+  //   {
+  //     id: null,
+  //     name: "",
+  //     effect: "",
+  //     description: "",
+  //     avg_rating: 0,
+  //     is_saved: false,
+  //   },
+  // ]);
 
   useEffect(() => {
     const getTools = async () => {
@@ -39,18 +39,30 @@ export default function ToolsList() {
   }, []);
 
   useEffect(() => {
-    if (currentUser) {
-      const userId = currentUser.id;
-
-      const getUserTools = async () => {
-        const userResponse = await axios.get(
-          `${baseUrl}/users/${userId}/tools`
+    if (location === "grounding" || location === "uplifting") {
+      const getEffectTools = async () => {
+        const effectResponse = await axios.get(
+          `${baseUrl}/tools/emotions/${location}`
         );
-        setUserTools(userResponse.data);
+        setTools(effectResponse.data);
       };
-      getUserTools();
+      getEffectTools();
     }
   }, []);
+
+  // useEffect(() => {
+  //   if (currentUser) {
+  //     const userId = currentUser.id;
+
+  //     const getUserTools = async () => {
+  //       const userResponse = await axios.get(
+  //         `${baseUrl}/users/${userId}/tools`
+  //       );
+  //       setUserTools(userResponse.data);
+  //     };
+  //     getUserTools();
+  //   }
+  // }, []);
 
   if (location === "grounding" || location === "uplifting") {
     return (
@@ -60,26 +72,26 @@ export default function ToolsList() {
         ) : (
           <HeroBanner title="Tools to Uplift" />
         )}
-        {!currentUser ? (
-          <div className="tools">
-            {tools
-              .filter((tool) => {
-                return tool.effect.toLowerCase() == location;
-              })
-              .map((tool, index) => {
-                return (
-                  <ToolCard
-                    key={index}
-                    id={tool.id}
-                    tool={tool.name}
-                    effect={tool.effect}
-                    description={tool.description}
-                    rating={tool.avg_rating}
-                  />
-                );
-              })}
-          </div>
-        ) : (
+        {/* {!currentUser ? ( */}
+        <div className="tools">
+          {tools
+            // .filter((tool) => {
+            //   return tool.effect.toLowerCase() == location;
+            // })
+            .map((tool, index) => {
+              return (
+                <ToolCard
+                  key={index}
+                  id={tool.id}
+                  tool={tool.name}
+                  effect={tool.effect}
+                  description={tool.description}
+                  rating={tool.avg_rating}
+                />
+              );
+            })}
+        </div>
+        {/* ) : (
           <div className="tools">
             {userTools
               .filter((userTool) => {
@@ -98,29 +110,29 @@ export default function ToolsList() {
                 );
               })}
           </div>
-        )}
+        )} */}
       </main>
     );
   }
   return (
     <main className="page page--tools">
       <HeroBanner title="All Tools" />
-      {!currentUser ? (
-        <div className="tools">
-          {tools.map((tool, index) => {
-            return (
-              <ToolCard
-                key={index}
-                id={tool.id}
-                tool={tool.name}
-                effect={tool.effect}
-                description={tool.description}
-                rating={tool.avg_rating}
-              />
-            );
-          })}
-        </div>
-      ) : (
+      {/* {!currentUser ? ( */}
+      <div className="tools">
+        {tools.map((tool, index) => {
+          return (
+            <ToolCard
+              key={index}
+              id={tool.id}
+              tool={tool.name}
+              effect={tool.effect}
+              description={tool.description}
+              rating={tool.avg_rating}
+            />
+          );
+        })}
+      </div>
+      {/* ) : (
         <div className="tools">
           {userTools.map((userTool, index) => {
             return (
@@ -135,7 +147,7 @@ export default function ToolsList() {
             );
           })}
         </div>
-      )}
+      )} */}
     </main>
   );
 }
