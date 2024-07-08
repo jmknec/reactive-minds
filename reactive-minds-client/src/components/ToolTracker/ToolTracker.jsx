@@ -2,7 +2,7 @@ import { useEffect, useContext, useState } from "react";
 import axios from "axios";
 import "./ToolTracker.scss";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
-import ToolCard from "../ToolCard/ToolCard";
+import TrackedCard from "../TrackedCard/TrackedCard";
 
 export default function ToolTracker() {
   const baseUrl = import.meta.env.VITE_API_URL;
@@ -27,14 +27,14 @@ export default function ToolTracker() {
       <h2>Hi there</h2>
       {trackedTools.map((trackedTool, index) => {
         return (
-          <div key={index}>
-            <p>tool: {trackedTool.name}</p>
-            <p>reactive_state: {trackedTool.reactive_state}</p>
-            <p>regulated_state: {trackedTool.regulated_state}</p>
-            <p>usage_rating: {trackedTool.usage_rating}</p>
-            <p>used_date: {trackedTool.used_date}</p>
-            <p>is_bookmarked: {trackedTool.is_bookmarked}</p>
-          </div>
+          <TrackedCard
+            key={index}
+            tool={trackedTool.name}
+            reactive={trackedTool.reactive_state}
+            regulated={trackedTool.regulated_state}
+            rated={trackedTool.usage_rating}
+            date={trackedTool.used_date}
+          />
         );
       })}
     </div>
