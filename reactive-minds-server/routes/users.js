@@ -98,11 +98,20 @@ router
       const userTool = await knex("users_tools")
         .where("user_id", user_id)
         .andWhere("tool_id", tool_id);
-      if (userTool.length != 0) {
+      if (userTool.length != 0 && userTool[0].is_bookmarked == 1) {
         const savedId = userTool[0].id;
         await knex("users_tools")
           .where("id", savedId)
           .update({ is_bookmarked: 0 });
+        return res
+          .status(204)
+          .json({ message: "Bookmark removed by user", savedId });
+      }
+      if (userTool.length != 0 && userTool[0].is_bookmarked == 0) {
+        const savedId = userTool[0].id;
+        await knex("users_tools")
+          .where("id", savedId)
+          .update({ is_bookmarked: 1 });
         return res
           .status(204)
           .json({ message: "Bookmark removed by user", savedId });

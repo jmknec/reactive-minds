@@ -9,6 +9,7 @@ import logo from "../src/assets/icons-logos/rm-logo.svg";
 import icon from "../src/assets/icons-logos/rm-icon.svg";
 import ltIcon from "../src/assets/icons-logos/rm-icon-light.svg";
 import ltLogo from "../src/assets/icons-logos/rm-logo-light.svg";
+import ProfilePage from "./pages/ProfilePage/ProfilePage";
 
 function App() {
   const user = {
@@ -25,6 +26,7 @@ function App() {
       <CurrentUserContext.Provider value={{ currentUser, setCurrentUser }}>
         <Header logo={logo} icon={icon} />
         <Routes>
+          <Route path="/profile/:id" element={<ProfilePage />} />
           {routes.map((route, index) => (
             <Route
               key={index}

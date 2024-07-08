@@ -43,11 +43,6 @@ const routes = [
     component: LoginPage,
   },
   {
-    route: "profile",
-    path: "/profile",
-    component: ProfilePage,
-  },
-  {
     route: "error",
     path: "*",
     component: ErrorPage,
