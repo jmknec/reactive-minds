@@ -1,6 +1,8 @@
 import { useContext } from "react";
 import "./ProfilePage.scss";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import HeroBanner from "../../components/HeroBanner/HeroBanner";
+import UserToolsList from "../../components/UserToolsList/UserToolsList";
 
 export default function ProfilePage() {
   const { currentUser } = useContext(CurrentUserContext);
@@ -9,8 +11,9 @@ export default function ProfilePage() {
     return <h2>403: Unauthorized</h2>;
   }
   return (
-    <>
-      <h2>{`Welcome, ${currentUser.username}`}</h2>
-    </>
+    <main className="page page--profile">
+      <HeroBanner title={`Welcome, ${currentUser.username}`} />
+      <UserToolsList></UserToolsList>
+    </main>
   );
 }

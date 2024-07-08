@@ -2,14 +2,14 @@ import { useEffect, useContext, useState } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
 import "./ToolsList.scss";
-import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+// import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import HeroBanner from "../HeroBanner/HeroBanner";
 import ToolCard from "../ToolCard/ToolCard";
 
 export default function ToolsList() {
   const baseUrl = import.meta.env.VITE_API_URL;
   let location = useLocation().pathname.slice(1);
-  const { currentUser } = useContext(CurrentUserContext);
+  // const { currentUser } = useContext(CurrentUserContext);
   const [tools, setTools] = useState([
     {
       id: null,
@@ -19,16 +19,6 @@ export default function ToolsList() {
       avg_rating: 0,
     },
   ]);
-  // const [userTools, setUserTools] = useState([
-  //   {
-  //     id: null,
-  //     name: "",
-  //     effect: "",
-  //     description: "",
-  //     avg_rating: 0,
-  //     is_saved: false,
-  //   },
-  // ]);
 
   useEffect(() => {
     const getTools = async () => {
@@ -50,20 +40,6 @@ export default function ToolsList() {
     }
   }, []);
 
-  // useEffect(() => {
-  //   if (currentUser) {
-  //     const userId = currentUser.id;
-
-  //     const getUserTools = async () => {
-  //       const userResponse = await axios.get(
-  //         `${baseUrl}/users/${userId}/tools`
-  //       );
-  //       setUserTools(userResponse.data);
-  //     };
-  //     getUserTools();
-  //   }
-  // }, []);
-
   if (location === "grounding" || location === "uplifting") {
     return (
       <main className="page page--tools">
@@ -74,22 +50,18 @@ export default function ToolsList() {
         )}
         {/* {!currentUser ? ( */}
         <div className="tools">
-          {tools
-            // .filter((tool) => {
-            //   return tool.effect.toLowerCase() == location;
-            // })
-            .map((tool, index) => {
-              return (
-                <ToolCard
-                  key={index}
-                  id={tool.id}
-                  tool={tool.name}
-                  effect={tool.effect}
-                  description={tool.description}
-                  rating={tool.avg_rating}
-                />
-              );
-            })}
+          {tools.map((tool, index) => {
+            return (
+              <ToolCard
+                key={index}
+                id={tool.id}
+                tool={tool.name}
+                effect={tool.effect}
+                description={tool.description}
+                rating={tool.avg_rating}
+              />
+            );
+          })}
         </div>
         {/* ) : (
           <div className="tools">
