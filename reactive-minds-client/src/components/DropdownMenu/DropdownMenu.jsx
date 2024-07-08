@@ -22,7 +22,7 @@ export default function DropdownMenu({ setOpen }) {
           setOpen={setOpen}
         />
         <DropdownOption
-          itemLink={`/profile/:${userId}`}
+          itemLink={`/profile/${userId}`}
           itemText="Profile"
           setOpen={setOpen}
         />

@@ -3,6 +3,7 @@ import "./ProfilePage.scss";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import HeroBanner from "../../components/HeroBanner/HeroBanner";
 import UserToolsList from "../../components/UserToolsList/UserToolsList";
+import ToolTracker from "../../components/ToolTracker/ToolTracker";
 
 export default function ProfilePage() {
   const { currentUser } = useContext(CurrentUserContext);
@@ -12,7 +13,8 @@ export default function ProfilePage() {
   }
   return (
     <main className="page page--profile">
-      <HeroBanner title={`Welcome, ${currentUser.username}`} />
+      <HeroBanner title={`Welcome back, ${currentUser.username}`} />
+      <ToolTracker />
       <UserToolsList />
     </main>
   );

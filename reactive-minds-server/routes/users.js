@@ -135,14 +135,26 @@ router.route("/:id/tracking").get(async (req, res) => {
   const userId = req.params.id;
   try {
     const trackedTools = await knex
-      .select("*")
-      .from("tool_usage")
-      .where("user_id", userId);
+      .select(
+        "users_tools.tool_id",
+        "tools.name",
+        "tool_usage.used_date",
+        "tool_usage.reactive_state",
+        "tool_usage.regulated_state",
+        "tool_usage.usage_rating",
+        "users_tools.is_bookmarked"
+      )
+      .from("users_tools")
+      .join("users", "users_tools.user_id", "=", "users.id")
+      .join("tools", "users_tools.tool_id", "=", "tools.id")
+      .join("tool_usage", "users_tools.usage_id", "=", "tool_usage.id")
+      .where("users_tools.user_id", userId);
     if (trackedTools.length < 1) {
       return res.status(404).send("Unable to find user's tracked tool usage");
     }
     return res.json(trackedTools);
-  } catch {
+  } catch (error) {
+    console.error(error);
     return res.status(500).send("Error getting user's tracking data");
   }
 });
