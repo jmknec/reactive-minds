@@ -73,6 +73,7 @@ router
           "tools.effect",
           "tools.description",
           "tools.avg_rating",
+          "users_tools.user_id",
           "users_tools.is_bookmarked"
         )
         .from("users_tools")

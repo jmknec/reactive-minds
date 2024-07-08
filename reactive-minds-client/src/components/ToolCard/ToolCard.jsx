@@ -5,19 +5,17 @@ import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import UserIcons from "../UserIcons/UserIcons";
 
 export default function ToolCard(props) {
-  const { id, tool, effect, description, state, rating } = props;
+  const { id, tool, effect, description, rating } = props;
   const { currentUser } = useContext(CurrentUserContext);
   const groundingSentence = () => {
     return `${sentenceCase(tool)}is a ${normalize(
       effect
-    )} technique that can bring balance to a state of ${normalize(state)}.`;
+    )} technique that can bring balance to a state of high reactivity.`;
   };
   const upliftingSentence = () => {
     return `${sentenceCase(tool)} is an ${normalize(
       effect
-    )}, play-based activity that can elevate from a state of ${normalize(
-      state
-    )}`;
+    )}, play-based activity that can elevate from a state of low reactivity`;
   };
 
   return (

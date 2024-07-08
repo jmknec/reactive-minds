@@ -43,7 +43,7 @@ export default function Header({ icon, logo }) {
           </Link>
         </div>
         <div className="header__button-container">
-          {currentUser ? (
+          {currentUser ? ( //TO DO: add dropdown w/ account options (login, profile)
             <button
               className="header__button"
               onClick={() => setCurrentUser(null)}
@@ -51,7 +51,12 @@ export default function Header({ icon, logo }) {
               Log Out
             </button>
           ) : (
-            <button className="header__button">Log In</button>
+            <button
+              className="header__button"
+              onClick={() => setCurrentUser("userone")} //TO DO: change this once auth set up*
+            >
+              Log In
+            </button>
           )}
         </div>
       </div>

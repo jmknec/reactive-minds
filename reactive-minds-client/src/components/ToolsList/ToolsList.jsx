@@ -2,14 +2,15 @@ import { useEffect, useContext, useState } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
 import "./ToolsList.scss";
-// import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import HeroBanner from "../HeroBanner/HeroBanner";
 import ToolCard from "../ToolCard/ToolCard";
 
 export default function ToolsList() {
   const baseUrl = import.meta.env.VITE_API_URL;
   let location = useLocation().pathname.slice(1);
-  // const { currentUser } = useContext(CurrentUserContext);
+  const { currentUser } = useContext(CurrentUserContext);
+  const userId = currentUser.id;
   const [tools, setTools] = useState([
     {
       id: null,
@@ -19,16 +20,16 @@ export default function ToolsList() {
       avg_rating: 0,
     },
   ]);
-  // const [userTools, setUserTools] = useState([
-  //   {
-  //     id: null,
-  //     name: "",
-  //     effect: "",
-  //     description: "",
-  //     avg_rating: 0,
-  //     is_saved: false,
-  //   },
-  // ]);
+  const [userTools, setUserTools] = useState([
+    {
+      id: null,
+      name: "",
+      effect: "",
+      description: "",
+      avg_rating: 0,
+      is_saved: false,
+    },
+  ]);
 
   useEffect(() => {
     const getTools = async () => {
@@ -36,6 +37,18 @@ export default function ToolsList() {
       setTools(globalResponse.data);
     };
     getTools();
+  }, []);
+
+  useEffect(() => {
+    if (currentUser) {
+      const getUserTools = async () => {
+        const userResponse = await axios.get(
+          `${baseUrl}/users/${userId}/tools`
+        );
+        setUserTools(userResponse.data);
+      };
+      getUserTools();
+    }
   }, []);
 
   if (location === "grounding" || location === "uplifting") {
@@ -46,50 +59,82 @@ export default function ToolsList() {
         ) : (
           <HeroBanner title="Tools to Uplift" />
         )}
-        <div className="tools">
-          {tools
-            .filter((tool) => {
-              return tool.effect.toLowerCase() == location;
-            })
-            .map((tool, index) => {
-              return (
-                <ToolCard
-                  key={index}
-                  id={tool.id}
-                  tool={tool.name}
-                  effect={tool.effect}
-                  description={tool.description}
-                  rating={tool.avg_rating}
-                />
-              );
-            })}
-        </div>
+        {!currentUser ? (
+          <div className="tools">
+            {tools
+              .filter((tool) => {
+                return tool.effect.toLowerCase() == location;
+              })
+              .map((tool, index) => {
+                return (
+                  <ToolCard
+                    key={index}
+                    id={tool.id}
+                    tool={tool.name}
+                    effect={tool.effect}
+                    description={tool.description}
+                    rating={tool.avg_rating}
+                  />
+                );
+              })}
+          </div>
+        ) : (
+          <div className="tools">
+            {userTools
+              .filter((tool) => {
+                return tool.effect.toLowerCase() == location;
+              })
+              .map((userTool, index) => {
+                return (
+                  <ToolCard
+                    key={index}
+                    id={userTool.id}
+                    tool={userTool.name}
+                    effect={userTool.effect}
+                    description={userTool.description}
+                    rating={userTool.avg_rating}
+                  />
+                );
+              })}
+          </div>
+        )}
       </main>
     );
   }
   return (
     <main className="page page--tools">
       <HeroBanner title="All Tools" />
-      <div className="tools">
-        <div className="tools__fields">
-          <h3 className="tools__field">Name</h3>
-          <h3 className="tools__field">Effect</h3>
-          <h3 className="tools__field">Description</h3>
-          <h3 className="tools__field">Average Rating</h3>
+      {!currentUser ? (
+        <div className="tools">
+          {tools.map((tool, index) => {
+            return (
+              <ToolCard
+                key={index}
+                id={tool.id}
+                tool={tool.name}
+                effect={tool.effect}
+                description={tool.description}
+                rating={tool.avg_rating}
+              />
+            );
+          })}
         </div>
-        {tools.map((tool, index) => {
-          return (
-            <ToolCard
-              key={index}
-              id={tool.id}
-              tool={tool.name}
-              effect={tool.effect}
-              description={tool.description}
-              rating={tool.avg_rating}
-            />
-          );
-        })}
-      </div>
+      ) : (
+        <div className="tools">
+          {userTools.map((userTool, index) => {
+            return (
+              <ToolCard
+                key={index}
+                id={userTool.id}
+                tool={userTool.name}
+                effect={userTool.effect}
+                description={userTool.description}
+                rating={userTool.avg_rating}
+              />
+            );
+          })}
+        </div>
+      )}
     </main>
   );
 }

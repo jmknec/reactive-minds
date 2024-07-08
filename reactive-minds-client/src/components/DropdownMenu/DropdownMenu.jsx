@@ -10,7 +10,7 @@ export default function DropdownMenu({ setOpen }) {
         setOpen={setOpen}
       />
       <DropdownOption
-        itemLink="/strategies"
+        itemLink="/tools"
         itemText="Tools for Emotion Regulation"
         setOpen={setOpen}
       />

@@ -44,7 +44,7 @@ export default function ToolsPage() {
           elevate their mood, fostering a sense of engagement and emotional
           responsiveness.
         </p>
-        <Link className="link" to={"/all-strategies"}>
+        <Link className="link" to={"/all-tools"}>
           <h3 className="text__subheading text__subheading--tools">
             Practice During Periods of Balanced Regulation
           </h3>
