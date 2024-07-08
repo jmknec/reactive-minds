@@ -10,7 +10,6 @@ export default function ToolsList() {
   const baseUrl = import.meta.env.VITE_API_URL;
   let location = useLocation().pathname.slice(1);
   const { currentUser } = useContext(CurrentUserContext);
-  const userId = currentUser.id;
   const [tools, setTools] = useState([
     {
       id: null,
@@ -41,6 +40,8 @@ export default function ToolsList() {
 
   useEffect(() => {
     if (currentUser) {
+      const userId = currentUser.id;
+
       const getUserTools = async () => {
         const userResponse = await axios.get(
           `${baseUrl}/users/${userId}/tools`
@@ -81,8 +82,8 @@ export default function ToolsList() {
         ) : (
           <div className="tools">
             {userTools
-              .filter((tool) => {
-                return tool.effect.toLowerCase() == location;
+              .filter((userTool) => {
+                return userTool.effect.toLowerCase() == location;
               })
               .map((userTool, index) => {
                 return (

@@ -7,6 +7,12 @@ import Logo from "../Logos/Logos";
 import Menu from "../../assets/icons-logos/menu-icon.svg";
 
 export default function Header({ icon, logo }) {
+  const user = {
+    id: 1,
+    email: "example@email.com",
+    username: "userone",
+    role: "parent or caregiver",
+  };
   const { currentUser, setCurrentUser } = useContext(CurrentUserContext);
   const [open, setOpen] = useState(false);
 
@@ -53,7 +59,7 @@ export default function Header({ icon, logo }) {
           ) : (
             <button
               className="header__button"
-              onClick={() => setCurrentUser("userone")} //TO DO: change this once auth set up*
+              onClick={() => setCurrentUser(user)} //TO DO: change this once auth set up*
             >
               Log In
             </button>
