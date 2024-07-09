@@ -1,10 +1,10 @@
 import { useEffect, useContext, useState } from "react";
 import axios from "axios";
-import "./ToolTracker.scss";
+import "./TrackedToolsList.scss";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import TrackedCard from "../TrackedCard/TrackedCard";
 
-export default function ToolTracker() {
+export default function TrackedToolsList() {
   const baseUrl = import.meta.env.VITE_API_URL;
   const { currentUser } = useContext(CurrentUserContext);
   const [trackedTools, setTrackedTools] = useState([]);
