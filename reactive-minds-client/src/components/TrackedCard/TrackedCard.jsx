@@ -15,7 +15,7 @@ export default function TrackedCard(props) {
           <p>{`You've tracked use of ${tool} ${count} times and you've rated it ${userAvg}.`}</p>
         </div>
         <div className="tracking__user-icons">
-          <UserIcons saved={saved} />
+          <UserIcons saved={saved} toolid={id} />
         </div>
       </div>
     </div>

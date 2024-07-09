@@ -1,26 +1,58 @@
+import { useState, useContext, useEffect } from "react";
+import axios from "axios";
 import "./UserIcons.scss";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import bookmark from "../../assets/icons-logos/bookmark.svg";
 import bookmarkFill from "../../assets/icons-logos/bookmarked.svg";
 import track from "../../assets/icons-logos/track.svg";
 
-export default function UserIcons({ saved }) {
+export default function UserIcons({ saved, toolid }) {
+  const baseUrl = import.meta.env.VITE_API_URL;
+  const { currentUser } = useContext(CurrentUserContext);
+  const userId = currentUser.id;
+  const [isSaved, setIsSaved] = useState(saved);
+
+  const toggleSave = async (toolid) => {
+    try {
+      const saveResponse = await axios.post(
+        `${baseUrl}/users/${userId}/tools`,
+        { tool_id: toolid }
+      );
+      setIsSaved(!isSaved);
+      console.log(saveResponse);
+    } catch (error) {
+      console.log(error.request);
+    }
+  };
+
   //TO DO: add onClick to track & save tool
-  console.log(saved);
   return (
-    <div className="icons">
+    <div className="icons" toolid={toolid}>
       <img className="icons__icon icons__icon--" src={track} alt="check mark" />
       {saved ? (
-        <img
-          className="icons__icon icons__icon--"
-          src={bookmark}
-          alt="bookmark outline"
-        />
+        <a
+          onClick={(e) => {
+            toggleSave(toolid);
+          }}
+        >
+          <img
+            className="icons__icon icons__icon--"
+            src={bookmark}
+            alt="bookmark outline"
+          />
+        </a>
       ) : (
-        <img
-          className="icons__icon icons__icon--"
-          src={bookmarkFill}
-          alt="bookmark filled"
-        />
+        <a
+          onClick={(e) => {
+            toggleSave(toolid);
+          }}
+        >
+          <img
+            className="icons__icon icons__icon--"
+            src={bookmarkFill}
+            alt="bookmark filled"
+          />
+        </a>
       )}
     </div>
   );
