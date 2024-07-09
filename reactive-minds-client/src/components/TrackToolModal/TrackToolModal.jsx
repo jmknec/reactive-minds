@@ -29,9 +29,9 @@ export default function TrackToolModal({ isOpen, onClose }) {
   };
 
   return (
-    <div className={`modal-container ${isOpen ? "open" : ""}`}>
-      <div className="track">
-        <h2 className="track__heading">Track Use:</h2>
+    <div className={`tracking-modal ${isOpen ? "open" : ""}`}>
+      <div className="tracking-modal__container">
+        <h2 className="tracking-modal__heading">Track Use:</h2>
         <form className="form" onSubmit={handleSubmit}>
           <FormInput
             fieldClass="form__field"

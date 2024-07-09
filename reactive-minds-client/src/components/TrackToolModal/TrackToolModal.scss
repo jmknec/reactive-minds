@@ -1,3 +1,37 @@
 @use "../../styles/partials/mixins" as *;
 @use "../../styles/partials/typography" as *;
 @use "../../styles/partials/variables" as *;
+
+.tracking-modal {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  padding-top: 10rem;
+  top: 8%;
+  left: 0;
+  z-index: 1;
+  background-color: rgba($color: $nt-dark-scorpion, $alpha: 0.8);
+  width: 100vw;
+  height: 160%;
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1rem;
+    background-color: $nb-wild-sand;
+    border-radius: 4px;
+    width: 90%;
+    height: fit-content;
+  }
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+
+  &__field {
+    @extend .form;
+  }
+}
