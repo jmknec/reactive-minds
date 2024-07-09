@@ -95,23 +95,24 @@ router
     const { tool_id } = req.body;
 
     try {
-      const userTool = await knex("tool_usage")
+      const userTools = await knex("tool_usage")
         .where("tool_usage.user_id", user_id)
         .andWhere("tool_usage.tool_id", tool_id);
-      console.log(userTool);
-      if (userTool.length != 0 && userTool.is_bookmarked == 1) {
-        const savedId = userTool.id;
+      console.log(userTools);
+      if (userTools.length > 0) {
+        const isBookmarked = userTools[0].is_bookmarked === 1;
+        const newBookmarkStatus = isBookmarked ? 0 : 1;
+        // const savedId = userTools.id;
         await knex("tool_usage")
-          .where("id", savedId)
-          .update({ is_bookmarked: 0 });
-        return res.status(204).json({ message: "Bookmark added", savedId });
-      }
-      if (userTool.length != 0 && userTool.is_bookmarked == 0) {
-        const savedId = userTool.id;
-        await knex("tool_usage")
-          .where("id", savedId)
-          .update({ is_bookmarked: 1 });
-        return res.status(204).json({ message: "Bookmark removed", savedId });
+          .where("user_id", user_id)
+          .andWhere("tool_id", tool_id)
+          .update({ is_bookmarked: newBookmarkStatus });
+
+        if (newBookmarkStatus === 1) {
+          return res.status(204).json({ message: "Bookmark added" });
+        } else {
+          return res.status(204).json({ message: "Bookmark removed" });
+        }
       } else {
         const savedTool = {
           user_id,
@@ -125,7 +126,7 @@ router
       }
     } catch (error) {
       console.error(error);
-      return res.status(500).send("Error bookmarking tool for user's account");
+      return res.status(500).send("Error bookmarking tool");
     }
   });
 //get all usage-tracking data for user
