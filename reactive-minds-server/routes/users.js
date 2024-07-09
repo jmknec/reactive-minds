@@ -98,11 +98,9 @@ router
       const userTools = await knex("tool_usage")
         .where("tool_usage.user_id", user_id)
         .andWhere("tool_usage.tool_id", tool_id);
-      console.log(userTools);
       if (userTools.length > 0) {
         const isBookmarked = userTools[0].is_bookmarked === 1;
         const newBookmarkStatus = isBookmarked ? 0 : 1;
-        // const savedId = userTools.id;
         await knex("tool_usage")
           .where("user_id", user_id)
           .andWhere("tool_id", tool_id)
@@ -185,12 +183,18 @@ router
     const { reactive_state, regulated_state, usage_rating } = req.body;
 
     try {
+      const userTools = await knex("tool_usage")
+        .where("tool_usage.user_id", user_id)
+        .andWhere("tool_usage.tool_id", tool_id);
+
+      const is_bookmarked = !userTools ? false : userTools[0].is_bookmarked;
       const toolTracked = {
         user_id,
         tool_id,
         reactive_state,
         regulated_state,
         usage_rating,
+        is_bookmarked,
       };
       await knex("tool_usage").insert(toolTracked);
       return res.status(201).json({
