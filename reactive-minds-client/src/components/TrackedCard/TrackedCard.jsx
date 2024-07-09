@@ -25,7 +25,9 @@ export default function TrackedCard(props) {
           <UserIcons saved={saved} toolid={id} toggleModal={toggleModal} />
         </div>
         <div className="tracking__modal">
-          {isOpen && <TrackToolModal isOpen={isOpen} onClose={toggleModal} />}
+          {isOpen && (
+            <TrackToolModal isOpen={isOpen} onClose={toggleModal} toolid={id} />
+          )}
         </div>
       </div>
     </div>
