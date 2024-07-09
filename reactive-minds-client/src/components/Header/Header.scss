@@ -6,9 +6,10 @@
   background-color: $nb-wild-sand;
   display: flex;
   justify-content: center;
+  position: -webkit-sticky;
   position: sticky;
-  top: 3px;
-  padding: 0 0.5rem;
+  top: 0;
+  padding: 1rem;
   width: 100%;
   z-index: 1;
 
@@ -29,11 +30,12 @@
 
   &__site-nav {
     position: relative;
+    top: 5px;
     flex: 1;
   }
 
   &__menu-icon {
-    width: 20px;
+    width: 25px;
   }
 
   &__logo-container {
@@ -66,6 +68,10 @@
     }
   }
 
+  &__logo {
+    height: 30px;
+  }
+
   &__button-container {
     display: flex;
     justify-content: flex-end;
@@ -74,12 +80,18 @@
   }
 
   &__button {
-    //TO DO: improve button styles
     @include mobile-cta-labels;
     color: $p-dark-fun-green;
-    padding: 0.125rem 0.5rem;
-    border: 0.5px solid $p-dark-fun-green;
-    border-radius: 4px;
+    padding: 0.5rem 1rem;
+    border: 1px solid $p-dark-fun-green;
+    border-radius: 20px;
+
+    &:hover {
+      background-color: $p-dark-fun-green;
+      color: $nt-light-albescent-white;
+      transform: scale(1.1);
+      transition: all ease-in-out;
+    }
 
     @include tablet {
       @include dt-cta-labels;
