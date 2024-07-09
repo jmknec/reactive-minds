@@ -16,7 +16,6 @@ export default function ToolTracker() {
       const trackedResponse = await axios.get(
         `${baseUrl}/users/${userId}/tracking`
       );
-      console.log(trackedResponse.data);
       setTrackedTools(trackedResponse.data);
     };
     getTrackedTools();
@@ -24,16 +23,16 @@ export default function ToolTracker() {
 
   return (
     <div className="tools">
-      <h2>Hi there</h2>
       {trackedTools.map((trackedTool, index) => {
         return (
           <TrackedCard
             key={index}
             tool={trackedTool.name}
-            reactive={trackedTool.reactive_state}
-            regulated={trackedTool.regulated_state}
-            rated={trackedTool.usage_rating}
-            date={trackedTool.used_date}
+            id={trackedTool.tool_id}
+            avg={trackedTool.avg_rating}
+            saved={trackedTool.is_bookmarked}
+            count={trackedTool.track_count}
+            userAvg={trackedTool.user_avg}
           />
         );
       })}

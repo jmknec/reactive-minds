@@ -73,13 +73,13 @@ router
           "tools.effect",
           "tools.description",
           "tools.avg_rating",
-          "users_tools.user_id",
-          "users_tools.is_bookmarked"
+          "tool_usage.user_id",
+          "tool_usage.is_bookmarked"
         )
-        .from("users_tools")
-        .join("users", "users_tools.user_id", "=", "users.id")
-        .join("tools", "users_tools.tool_id", "=", "tools.id")
-        .where("users_tools.user_id", id)
+        .from("tool_usage")
+        .join("users", "tool_usage.user_id", "=", "users.id")
+        .join("tools", "tool_usage.tool_id", "=", "tools.id")
+        .where("tool_usage.user_id", id)
         .andWhere("is_bookmarked", true);
       if (userTools.length < 1) {
         return res.status(404).send("User has no bookmarked tools");
@@ -95,12 +95,12 @@ router
     const { tool_id } = req.body;
 
     try {
-      const userTool = await knex("users_tools")
+      const userTool = await knex("tool_usage")
         .where("user_id", user_id)
         .andWhere("tool_id", tool_id);
       if (userTool.length != 0 && userTool[0].is_bookmarked == 1) {
         const savedId = userTool[0].id;
-        await knex("users_tools")
+        await knex("tool_usage")
           .where("id", savedId)
           .update({ is_bookmarked: 0 });
         return res
@@ -109,7 +109,7 @@ router
       }
       if (userTool.length != 0 && userTool[0].is_bookmarked == 0) {
         const savedId = userTool[0].id;
-        await knex("users_tools")
+        await knex("tool_usage")
           .where("id", savedId)
           .update({ is_bookmarked: 1 });
         return res
@@ -121,7 +121,7 @@ router
           tool_id,
           is_bookmarked: 1,
         };
-        await knex("users_tools").insert(savedTool);
+        await knex("tool_usage").insert(savedTool);
         res
           .status(201)
           .json({ message: "Tool successfully bookmarked by user", savedTool });
@@ -136,19 +136,19 @@ router.route("/:id/tracking").get(async (req, res) => {
   try {
     const trackedTools = await knex
       .select(
-        "users_tools.tool_id",
+        "tool_usage.tool_id",
         "tools.name",
-        "tool_usage.used_date",
-        "tool_usage.reactive_state",
-        "tool_usage.regulated_state",
-        "tool_usage.usage_rating",
-        "users_tools.is_bookmarked"
+        "tools.avg_rating",
+        "tool_usage.is_bookmarked",
+        knex.raw("COUNT(tool_usage.tool_id) as track_count"),
+        knex.raw("ROUND(AVG(tool_usage.usage_rating), 1) as user_avg")
       )
-      .from("users_tools")
-      .join("users", "users_tools.user_id", "=", "users.id")
-      .join("tools", "users_tools.tool_id", "=", "tools.id")
-      .join("tool_usage", "users_tools.usage_id", "=", "tool_usage.id")
-      .where("users_tools.user_id", userId);
+      .from("tool_usage")
+      .join("users", "tool_usage.user_id", "=", "users.id")
+      .join("tools", "tool_usage.tool_id", "=", "tools.id")
+      .where("tool_usage.user_id", userId)
+      .groupBy("tool_usage.tool_id", "tools.name", "tool_usage.is_bookmarked")
+      .orderBy("tool_usage.tool_id");
     if (trackedTools.length < 1) {
       return res.status(404).send("Unable to find user's tracked tool usage");
     }

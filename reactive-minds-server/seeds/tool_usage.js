@@ -12,6 +12,7 @@ export async function seed(knex) {
       reactive_state: "anxious",
       regulated_state: "calm",
       usage_rating: 5,
+      is_bookmarked: false,
     },
     {
       id: 2,
@@ -20,6 +21,7 @@ export async function seed(knex) {
       reactive_state: "",
       regulated_state: "",
       usage_rating: 4,
+      is_bookmarked: true,
     },
     {
       id: 3,
@@ -28,6 +30,7 @@ export async function seed(knex) {
       reactive_state: "upset, worried",
       regulated_state: "better",
       usage_rating: 4.5,
+      is_bookmarked: true,
     },
     {
       id: 4,
@@ -36,6 +39,7 @@ export async function seed(knex) {
       reactive_state: "down",
       regulated_state: "happy!",
       usage_rating: 5,
+      is_bookmarked: false,
     },
     {
       id: 5,
@@ -44,6 +48,7 @@ export async function seed(knex) {
       reactive_state: "worried, anxious",
       regulated_state: "",
       usage_rating: 2,
+      is_bookmarked: false,
     },
     {
       id: 6,
@@ -52,6 +57,7 @@ export async function seed(knex) {
       reactive_state: "",
       regulated_state: "",
       usage_rating: 5,
+      is_bookmarked: true,
     },
     {
       id: 7,
@@ -60,6 +66,7 @@ export async function seed(knex) {
       reactive_state: "panicked",
       regulated_state: "better but still anxious",
       usage_rating: 3,
+      is_bookmarked: false,
     },
     {
       id: 8,
@@ -68,6 +75,7 @@ export async function seed(knex) {
       reactive_state: "sad",
       regulated_state: "",
       usage_rating: 2,
+      is_bookmarked: true,
     },
     {
       id: 9,
@@ -76,6 +84,7 @@ export async function seed(knex) {
       reactive_state: "",
       regulated_state: "",
       usage_rating: 4,
+      is_bookmarked: true,
     },
     {
       id: 10,
@@ -84,6 +93,7 @@ export async function seed(knex) {
       reactive_state: "",
       regulated_state: "",
       usage_rating: 3.5,
+      is_bookmarked: true,
     },
   ]);
 }

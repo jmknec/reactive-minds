@@ -15,7 +15,7 @@ export default function ProfilePage() {
     <main className="page page--profile">
       <HeroBanner title={`Welcome back, ${currentUser.username}`} />
       <ToolTracker />
-      <UserToolsList />
+      {/* <UserToolsList /> */}
     </main>
   );
 }
