@@ -21,7 +21,7 @@ export default function UserIcons({ saved, toolid }) {
       setIsSaved(!isSaved);
       console.log(saveResponse);
     } catch (error) {
-      console.log(error.request);
+      console.error("Error toggling save:", error);
     }
   };
 
@@ -29,9 +29,9 @@ export default function UserIcons({ saved, toolid }) {
   return (
     <div className="icons" toolid={toolid}>
       <img className="icons__icon icons__icon--" src={track} alt="check mark" />
-      {saved ? (
+      {isSaved ? (
         <a
-          onClick={(e) => {
+          onClick={() => {
             toggleSave(toolid);
           }}
         >
@@ -43,7 +43,7 @@ export default function UserIcons({ saved, toolid }) {
         </a>
       ) : (
         <a
-          onClick={(e) => {
+          onClick={() => {
             toggleSave(toolid);
           }}
         >
