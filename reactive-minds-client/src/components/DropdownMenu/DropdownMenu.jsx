@@ -10,7 +10,7 @@ export default function DropdownMenu({ setOpen }) {
     const userId = currentUser.id;
 
     return (
-      <ul className="menu">
+      <ul className={`menu ${setOpen ? "menu--active" : ""}`}>
         <DropdownOption
           itemLink="/emotions"
           itemText="Emotion Regulation States"
@@ -30,7 +30,7 @@ export default function DropdownMenu({ setOpen }) {
     );
   }
   return (
-    <ul className="menu">
+    <ul className={`menu ${setOpen ? "menu--active" : ""}`}>
       <DropdownOption
         itemLink="/emotions"
         itemText="Emotion Regulation States"

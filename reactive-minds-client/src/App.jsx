@@ -18,7 +18,7 @@ function App() {
     username: "userone",
     role: "parent or caregiver",
   };
-  //change default state value to null once auth is set up
+  //TO DO: change default state value to null once auth is set up
   const [currentUser, setCurrentUser] = useState(user);
 
   return (

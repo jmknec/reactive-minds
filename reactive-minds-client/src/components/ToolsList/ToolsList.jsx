@@ -1,15 +1,13 @@
-import { useEffect, useContext, useState } from "react";
+import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
 import "./ToolsList.scss";
-// import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import HeroBanner from "../HeroBanner/HeroBanner";
 import ToolCard from "../ToolCard/ToolCard";
 
 export default function ToolsList() {
   const baseUrl = import.meta.env.VITE_API_URL;
   let location = useLocation().pathname.slice(1);
-  // const { currentUser } = useContext(CurrentUserContext);
   const [tools, setTools] = useState([
     {
       id: null,
@@ -63,33 +61,12 @@ export default function ToolsList() {
             );
           })}
         </div>
-        {/* ) : (
-          <div className="tools">
-            {userTools
-              .filter((userTool) => {
-                return userTool.effect.toLowerCase() == location;
-              })
-              .map((userTool, index) => {
-                return (
-                  <ToolCard
-                    key={index}
-                    id={userTool.id}
-                    tool={userTool.name}
-                    effect={userTool.effect}
-                    description={userTool.description}
-                    rating={userTool.avg_rating}
-                  />
-                );
-              })}
-          </div>
-        )} */}
       </main>
     );
   }
   return (
     <main className="page page--tools">
       <HeroBanner title="All Tools" />
-      {/* {!currentUser ? ( */}
       <div className="tools">
         {tools.map((tool, index) => {
           return (
@@ -104,22 +81,6 @@ export default function ToolsList() {
           );
         })}
       </div>
-      {/* ) : (
-        <div className="tools">
-          {userTools.map((userTool, index) => {
-            return (
-              <ToolCard
-                key={index}
-                id={userTool.id}
-                tool={userTool.name}
-                effect={userTool.effect}
-                description={userTool.description}
-                rating={userTool.avg_rating}
-              />
-            );
-          })}
-        </div>
-      )} */}
     </main>
   );
 }
