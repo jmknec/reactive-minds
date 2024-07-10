@@ -80,23 +80,4 @@
     width: fit-content;
     flex: 1;
   }
-
-  &__button {
-    @include mobile-cta-labels;
-    color: $p-dark-fun-green;
-    padding: 0.5rem 1rem;
-    border: 1px solid $p-dark-fun-green;
-    border-radius: 20px;
-
-    &:hover {
-      background-color: $p-dark-fun-green;
-      color: $nt-light-albescent-white;
-      transform: scale(1.1);
-      transition: all ease-in-out;
-    }
-
-    @include tablet {
-      @include dt-cta-labels;
-    }
-  }
 }

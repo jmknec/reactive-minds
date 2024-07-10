@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import "./TrackToolModal.scss";
 import FormInput from "../FormInput/FormInput";
+import Button from "../Button/Button";
 
 export default function TrackToolModal({
   isOpen,
@@ -47,8 +48,6 @@ export default function TrackToolModal({
     onClose();
   };
 
-  console.log(effect);
-
   return (
     <div
       className={`tracking-modal ${
@@ -60,43 +59,53 @@ export default function TrackToolModal({
       <div className="tracking-modal__container">
         <h2 className="tracking-modal__heading">Track Use:</h2>
         <form className="form" onSubmit={handleSubmit}>
-          <FormInput
-            fieldClass="form__field"
-            inputClass={`form__input`}
-            htmlFor="reactive_state"
-            label="Reactive State"
-            id="reactive_state"
-            name="reactive_state"
-            placeholder={`How would you describe your child's emotional state before using ${tool}?`}
-            onChange={handleChange}
-            value={values.reactive_state}
-          />
-          <FormInput
-            fieldClass="form__field"
-            inputClass={`form__input`}
-            htmlFor="regulated_state"
-            label="Regulated State"
-            id="regulated_state"
-            name="regulated_state"
-            placeholder={`How would you describe your child's emotional state after using ${tool}?`}
-            onChange={handleChange}
-            value={values.regulated_state}
-          />
-          <FormInput
-            fieldClass="form__field"
-            inputClass={`form__input`}
-            htmlFor="usage_rating"
-            label="Rating"
-            id="usage_rating"
-            name="usage_rating"
-            placeholder={`Please rate how effective ${tool} was on a scale of 1-5`}
-            onChange={handleChange}
-            value={values.usage_rating}
-          />
-          <button className="form__track">Submit</button>
-          <button className="form__cancel" type="button" onClick={onClose}>
-            Cancel
-          </button>
+          <div className="form__field-container">
+            <FormInput
+              fieldClass="form__field"
+              inputClass={`form__input`}
+              htmlFor="reactive_state"
+              label="Reactive State"
+              id="reactive_state"
+              name="reactive_state"
+              placeholder={`How would you describe your child's emotional state before using ${tool}?`}
+              onChange={handleChange}
+              value={values.reactive_state}
+            />
+            <FormInput
+              fieldClass="form__field"
+              inputClass={`form__input`}
+              htmlFor="regulated_state"
+              label="Regulated State"
+              id="regulated_state"
+              name="regulated_state"
+              placeholder={`How would you describe your child's emotional state after using ${tool}?`}
+              onChange={handleChange}
+              value={values.regulated_state}
+            />
+            <FormInput
+              fieldClass="form__field"
+              inputClass={`form__input`}
+              htmlFor="usage_rating"
+              label="Rating"
+              id="usage_rating"
+              name="usage_rating"
+              placeholder={`Please rate how effective ${tool} was on a scale of 1-5`}
+              onChange={handleChange}
+              value={values.usage_rating}
+            />
+          </div>
+          <div className="form__button-container">
+            <Button
+              buttonClass="button button--form button--submit"
+              buttonText="Submit"
+            />
+            <Button
+              buttonClass="button button--form button--cancel"
+              buttonText="Cancel"
+              buttonType="button"
+              buttonAction={onClose}
+            />
+          </div>
         </form>
       </div>
     </div>

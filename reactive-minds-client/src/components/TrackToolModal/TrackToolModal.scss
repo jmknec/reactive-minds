@@ -32,9 +32,14 @@
     gap: 0.5rem;
     padding: 1rem;
     background-color: $nb-wild-sand;
-    border-radius: 4px;
+    border-radius: 8px;
     width: 90%;
     height: fit-content;
+    filter: drop-shadow(2px 2px 5px rgb(0 0 0 / 0.5));
+
+    @include tablet {
+      max-width: 700px;
+    }
   }
 }
 
@@ -43,7 +48,79 @@
   flex-direction: column;
   gap: 0.25rem;
 
+  // @include desktop {
+  //   flex-direction: row;
+  // }
+
+  &__field-container {
+    display: flex;
+    flex-direction: column;
+  }
+
   &__field {
     @extend .form;
+
+    // @include desktop {
+    //   flex-direction: column;
+    // }
+  }
+
+  &__input {
+    @include mobile-cta-labels;
+    text-wrap: wrap;
+    padding: 0.5rem;
+    padding-top: 0;
+    height: fit-content;
+    min-height: 3.5rem;
+    border-radius: 8px;
+    border: 1px solid $p-dark-fun-green;
+
+    @include tablet {
+      @include dt-cta-labels;
+      min-height: max-content;
+      height: 2rem;
+    }
+
+    &::placeholder {
+      @include mobile-cta-labels;
+      text-wrap: wrap;
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &__button-container {
+    display: flex;
+    gap: 0.375rem;
+    width: 100%;
+    margin-top: 0.25rem;
+  }
+}
+
+.button {
+  @include mobile-button;
+
+  &:hover {
+    @include button-hover;
+  }
+
+  &--form {
+    flex: 1;
+
+    &:hover {
+      transform: scale(1.04);
+    }
+  }
+
+  &--submit {
+    background-color: $p-dark-fun-green;
+    color: $nb-wild-sand;
+
+    &:hover {
+      background-color: $nb-wild-sand;
+      color: $p-dark-fun-green;
+    }
   }
 }

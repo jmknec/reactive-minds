@@ -38,9 +38,9 @@
 
 @mixin mobile-cta-labels {
   font-family: $primary-font;
-  font-size: 0.625rem;
+  font-size: 0.75rem;
   font-weight: 400;
-  line-height: 0.875rem;
+  line-height: 1rem;
 }
 
 @mixin mobile-body {
@@ -90,4 +90,19 @@
 @mixin full-size {
   height: 100%;
   width: 100%;
+}
+
+@mixin mobile-button {
+  @include mobile-cta-labels;
+  color: $p-dark-fun-green;
+  padding: 0.5rem 1rem;
+  border: 1px solid $p-dark-fun-green;
+  border-radius: 20px;
+}
+
+@mixin button-hover {
+  background-color: $p-dark-fun-green;
+  color: $nt-light-albescent-white;
+  transform: scale(1.1);
+  transition: all ease-in-out;
 }

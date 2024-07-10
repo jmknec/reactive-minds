@@ -4,6 +4,7 @@ import "./Header.scss";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import DropdownMenu from "../DropdownMenu/DropdownMenu";
 import Logo from "../Logos/Logos";
+import Button from "../Button/Button";
 import Menu from "../../assets/icons-logos/menu-icon.svg";
 
 export default function Header({ icon, logo }) {
@@ -50,19 +51,17 @@ export default function Header({ icon, logo }) {
         </div>
         <div className="header__button-container">
           {currentUser ? (
-            <button
-              className="header__button"
-              onClick={() => setCurrentUser(null)}
-            >
-              Log Out
-            </button>
+            <Button
+              buttonClass="button"
+              buttonAction={() => setCurrentUser(null)}
+              buttonText="Log Out"
+            />
           ) : (
-            <button
-              className="header__button"
-              onClick={() => setCurrentUser(user)}
-            >
-              Log In
-            </button>
+            <Button
+              buttonClass="button"
+              buttonAction={() => setCurrentUser(user)}
+              buttonText="Log In"
+            />
           )}
         </div>
       </div>
