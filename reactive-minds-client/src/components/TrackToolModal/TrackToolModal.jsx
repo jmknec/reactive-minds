@@ -1,13 +1,11 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import "./TrackToolModal.scss";
-import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import FormInput from "../FormInput/FormInput";
 
 export default function TrackToolModal({ isOpen, onClose, toolid }) {
   const baseUrl = import.meta.env.VITE_API_URL;
-  const { currentUser } = useContext(CurrentUserContext);
   const { id } = useParams();
   const [values, setValues] = useState({
     reactive_state: "",

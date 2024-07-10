@@ -46,7 +46,6 @@ export default function ToolsList() {
         ) : (
           <HeroBanner title="Tools to Uplift" />
         )}
-        {/* {!currentUser ? ( */}
         <div className="tools">
           {tools.map((tool, index) => {
             return (
