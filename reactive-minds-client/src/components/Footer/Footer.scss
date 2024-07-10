@@ -3,10 +3,12 @@
 @use "../../styles/partials/variables" as *;
 
 .footer {
-  background-color: $nt-dark-scorpion;
+  position: sticky;
+  bottom: 0;
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
+  background-color: $nt-dark-scorpion;
   padding: 1rem;
   width: 100%;
   aspect-ratio: 5/2;

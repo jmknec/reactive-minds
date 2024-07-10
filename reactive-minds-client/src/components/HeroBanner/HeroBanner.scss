@@ -28,9 +28,17 @@
     width: 100%;
     max-width: 100%;
     aspect-ratio: 3/2;
+    position: -webkit-sticky;
     position: sticky;
-    //TO DO: improve responsiveness sticky scroll
-    top: -25%;
+    top: -120px;
+    left: 0;
+    right: 0;
+    // margin-top: 30px;
+    // position: fixed;
+    // z-index: 0;
+    // height: 20px;
+    // overflow: hidden;
+    // transition: all 0.3s;
 
     @include tablet {
       padding-left: 2.5rem;
@@ -43,6 +51,10 @@
       padding-left: 7.5rem;
       aspect-ratio: 7/3;
       justify-content: center;
+    }
+
+    &--shrink {
+      height: 105px;
     }
   }
 
