@@ -19,3 +19,27 @@ $a-light-curious-blue: #318dce;
 $a-dark-gold-tips: #e8b615;
 $a-med-saffron: #f4ce3f;
 $a-light-sweet-corn: #f9e18c;
+
+//gradients
+$reactive-spectrum: linear-gradient(
+  75deg,
+  $a-dark-midnight-blue,
+  #006bbc,
+  #0082bd,
+  #0096b6,
+  #00a8ac,
+  #26b3a4,
+  $p-light-tradewind,
+  #4bbd97,
+  #6fc688,
+  #8acc74,
+  #aacf5f,
+  #ced04c,
+  $a-med-saffron
+);
+
+$balanced: linear-gradient(75deg, #036040, #1d7656, #318d6d, #44a484, #57bc9d);
+
+$uplifting: linear-gradient(75deg, #e8b615, #ecc13c, #f0cc59, #f5d773, #f9e18c);
+
+$grounding: linear-gradient(75deg, #00276f, #023f88, #0d59a0, #1e72b8, #318dce);

@@ -5,7 +5,11 @@ import HeroBanner from "../../components/HeroBanner/HeroBanner";
 export default function ToolsPage() {
   return (
     <main className="page page--tools">
-      <HeroBanner title="Tools for Emotion Regulation" />
+      <HeroBanner
+        className="page__hero"
+        title="Tools for Emotion Regulation"
+        titleClass="page__title"
+      />
       <section className="text text--tools">
         <h2 className="text__heading text__heading--tools">
           Helping Your Child Navigate Emotions

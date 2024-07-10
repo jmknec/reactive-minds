@@ -4,22 +4,7 @@
 
 .page {
   &__hero {
-    background: linear-gradient(
-      75deg,
-      $a-dark-midnight-blue,
-      #006bbc,
-      #0082bd,
-      #0096b6,
-      #00a8ac,
-      #26b3a4,
-      $p-light-tradewind,
-      #4bbd97,
-      #6fc688,
-      #8acc74,
-      #aacf5f,
-      #ced04c,
-      $a-med-saffron
-    );
+    background: $reactive-spectrum;
     filter: contrast(80%);
     display: flex;
     justify-content: flex-start;
@@ -33,6 +18,19 @@
     top: -120px;
     left: 0;
     right: 0;
+
+    &--grounding {
+      background: $grounding;
+    }
+
+    &--uplifting {
+      background: $uplifting;
+      filter: contrast(70%);
+    }
+
+    &--balanced {
+      background: $balanced;
+    }
 
     @include tablet {
       padding-left: 2.5rem;
@@ -59,5 +57,9 @@
 
   &__title {
     color: $nt-light-albescent-white;
+
+    &--uplifting {
+      filter: brightness(120%);
+    }
   }
 }

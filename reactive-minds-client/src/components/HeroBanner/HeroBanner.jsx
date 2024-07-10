@@ -1,10 +1,10 @@
 import "./HeroBanner.scss";
 
-export default function HeroBanner({ title }) {
+export default function HeroBanner({ title, className, titleClass }) {
   return (
-    <div className="page__hero">
+    <div className={className}>
       <div className="page__title-container">
-        <h1 className="page__title">{title}</h1>
+        <h1 className={titleClass}>{title}</h1>
       </div>
     </div>
   );

@@ -25,7 +25,6 @@ export default function UserIcons({ saved, toolid, toggleModal }) {
     }
   };
 
-  //TO DO: add onClick to track & save tool
   return (
     <div className="icons" toolid={toolid}>
       <a onClick={toggleModal}>

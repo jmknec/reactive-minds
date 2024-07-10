@@ -42,9 +42,17 @@ export default function ToolsList() {
     return (
       <main className="page page--tools">
         {location === "grounding" ? (
-          <HeroBanner title="Grounding Tools" />
+          <HeroBanner
+            className="page__hero page__hero--grounding"
+            title="Grounding Tools"
+            titleClass="page__title"
+          />
         ) : (
-          <HeroBanner title="Tools to Uplift" />
+          <HeroBanner
+            className="page__hero page__hero--uplifting"
+            title="Tools to Uplift"
+            titleClass="page__title page__title--uplifting"
+          />
         )}
         <div className="tools">
           {tools.map((tool, index) => {
@@ -65,7 +73,11 @@ export default function ToolsList() {
   }
   return (
     <main className="page page--tools">
-      <HeroBanner title="All Tools" />
+      <HeroBanner
+        className="page__hero page__hero--balanced"
+        title="All Tools"
+        titleClass="page__title"
+      />
       <div className="tools">
         {tools.map((tool, index) => {
           return (

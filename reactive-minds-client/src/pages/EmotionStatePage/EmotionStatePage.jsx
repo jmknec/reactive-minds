@@ -4,7 +4,11 @@ import "./EmotionStatePage.scss";
 export default function EmotionStatePage() {
   return (
     <main className="page page--states">
-      <HeroBanner title="Emotion Regulation" />
+      <HeroBanner
+        className="page__hero"
+        title="Emotion Regulation"
+        titleClass="page__title"
+      />
       <section className="text text--states">
         <h2 className="text__heading text__heading--states">
           What is Emotion Regulation?
