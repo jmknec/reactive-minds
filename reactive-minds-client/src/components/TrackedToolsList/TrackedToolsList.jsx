@@ -29,6 +29,7 @@ export default function TrackedToolsList() {
             key={index}
             tool={trackedTool.name}
             id={trackedTool.tool_id}
+            effect={trackedTool.effect}
             avg={trackedTool.avg_rating}
             saved={trackedTool.is_bookmarked}
             count={trackedTool.track_count}

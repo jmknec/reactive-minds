@@ -4,7 +4,13 @@ import axios from "axios";
 import "./TrackToolModal.scss";
 import FormInput from "../FormInput/FormInput";
 
-export default function TrackToolModal({ isOpen, onClose, toolid }) {
+export default function TrackToolModal({
+  isOpen,
+  onClose,
+  tool,
+  toolid,
+  effect,
+}) {
   const baseUrl = import.meta.env.VITE_API_URL;
   const { id } = useParams();
   const [values, setValues] = useState({
@@ -41,8 +47,16 @@ export default function TrackToolModal({ isOpen, onClose, toolid }) {
     onClose();
   };
 
+  console.log(effect);
+
   return (
-    <div className={`tracking-modal ${isOpen ? "open" : ""}`}>
+    <div
+      className={`tracking-modal ${
+        effect === "Grounding" ? "tracking-modal--grounding" : ""
+      } ${effect === "Uplifting" ? "tracking-modal--uplifting" : ""} ${
+        isOpen ? "open" : ""
+      }`}
+    >
       <div className="tracking-modal__container">
         <h2 className="tracking-modal__heading">Track Use:</h2>
         <form className="form" onSubmit={handleSubmit}>
@@ -53,7 +67,7 @@ export default function TrackToolModal({ isOpen, onClose, toolid }) {
             label="Reactive State"
             id="reactive_state"
             name="reactive_state"
-            placeholder="How would you describe your child's emotional state before using this tool?"
+            placeholder={`How would you describe your child's emotional state before using ${tool}?`}
             onChange={handleChange}
             value={values.reactive_state}
           />
@@ -64,7 +78,7 @@ export default function TrackToolModal({ isOpen, onClose, toolid }) {
             label="Regulated State"
             id="regulated_state"
             name="regulated_state"
-            placeholder="How would you describe your child's emotional state after using this tool?"
+            placeholder={`How would you describe your child's emotional state after using ${tool}?`}
             onChange={handleChange}
             value={values.regulated_state}
           />
@@ -75,11 +89,14 @@ export default function TrackToolModal({ isOpen, onClose, toolid }) {
             label="Rating"
             id="usage_rating"
             name="usage_rating"
-            placeholder="Please rate how effective this tool was on a scale of 1-5"
+            placeholder={`Please rate how effective ${tool} was on a scale of 1-5`}
             onChange={handleChange}
             value={values.usage_rating}
           />
           <button className="form__track">Submit</button>
+          <button className="form__cancel" type="button" onClick={onClose}>
+            Cancel
+          </button>
         </form>
       </div>
     </div>

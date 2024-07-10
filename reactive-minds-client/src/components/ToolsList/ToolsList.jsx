@@ -7,7 +7,7 @@ import ToolCard from "../ToolCard/ToolCard";
 
 export default function ToolsList() {
   const baseUrl = import.meta.env.VITE_API_URL;
-  let location = useLocation().pathname.slice(1);
+  const location = useLocation().pathname.slice(1);
   const [tools, setTools] = useState([
     {
       id: null,

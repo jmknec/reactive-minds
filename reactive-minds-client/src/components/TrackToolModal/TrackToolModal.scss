@@ -3,16 +3,28 @@
 @use "../../styles/partials/variables" as *;
 
 .tracking-modal {
-  position: absolute;
+  position: fixed;
   display: flex;
   justify-content: center;
   padding-top: 10rem;
-  top: 8%;
+  top: 98px;
   left: 0;
+  right: 0;
   z-index: 1;
-  background-color: rgba($color: $nt-dark-scorpion, $alpha: 0.8);
   width: 100vw;
   height: 160%;
+
+  @include tablet {
+    top: 75px;
+  }
+
+  &--grounding {
+    background-color: rgba($color: $a-light-curious-blue, $alpha: 0.85);
+  }
+
+  &--uplifting {
+    background-color: rgba($color: $a-med-saffron, $alpha: 0.75);
+  }
 
   &__container {
     display: flex;

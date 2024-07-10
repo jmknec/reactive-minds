@@ -4,7 +4,7 @@ import UserIcons from "../UserIcons/UserIcons";
 import TrackToolModal from "../TrackToolModal/TrackToolModal";
 
 export default function TrackedCard(props) {
-  const { tool, avg, id, saved, count, userAvg } = props;
+  const { tool, avg, id, saved, count, userAvg, effect } = props;
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleModal = () => {
@@ -26,7 +26,13 @@ export default function TrackedCard(props) {
         </div>
         <div className="tracking__modal">
           {isOpen && (
-            <TrackToolModal isOpen={isOpen} onClose={toggleModal} toolid={id} />
+            <TrackToolModal
+              isOpen={isOpen}
+              onClose={toggleModal}
+              tool={tool}
+              toolid={id}
+              effect={effect}
+            />
           )}
         </div>
       </div>

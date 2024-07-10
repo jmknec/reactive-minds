@@ -79,10 +79,13 @@ router
         .from("tool_usage")
         .join("users", "tool_usage.user_id", "=", "users.id")
         .join("tools", "tool_usage.tool_id", "=", "tools.id")
-        .where("tool_usage.user_id", id)
-        .andWhere("is_bookmarked", true);
+        .where("tool_usage.user_id", id);
       if (userTools.length < 1) {
-        return res.status(404).send("User has no bookmarked tools");
+        return res
+          .status(404)
+          .send(
+            "Unable to find tools the user has bookmarked or previously tracked usage of"
+          );
       }
       console.log(userTools.length);
       res.json(userTools);
@@ -135,14 +138,15 @@ router.route("/:id/tracking").get(async (req, res) => {
       .select(
         "tool_usage.tool_id",
         "tools.name",
+        "tools.effect",
         "tools.avg_rating",
         "tool_usage.is_bookmarked",
         knex.raw("COUNT(tool_usage.tool_id) as track_count"),
         knex.raw("ROUND(AVG(tool_usage.usage_rating), 1) as user_avg")
       )
       .from("tool_usage")
-      .join("users", "tool_usage.user_id", "=", "users.id")
       .join("tools", "tool_usage.tool_id", "=", "tools.id")
+      .join("users", "tool_usage.user_id", "=", "users.id")
       .where("tool_usage.user_id", userId)
       .groupBy("tool_usage.tool_id", "tools.name", "tool_usage.is_bookmarked")
       .orderBy("tool_usage.tool_id");
