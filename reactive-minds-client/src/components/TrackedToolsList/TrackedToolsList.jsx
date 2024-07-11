@@ -7,7 +7,19 @@ import TrackedCard from "../TrackedCard/TrackedCard";
 export default function TrackedToolsList() {
   const baseUrl = import.meta.env.VITE_API_URL;
   const { currentUser } = useContext(CurrentUserContext);
-  const [trackedTools, setTrackedTools] = useState([]);
+  const [trackedTools, setTrackedTools] = useState([
+    {
+      tool_id: null,
+      name: "",
+      effect: "",
+      avg_rating: 0,
+      is_bookmarked: 0,
+      track_count: 0,
+      user_avg: 0,
+    },
+  ]);
+
+  console.log(trackedTools);
 
   useEffect(() => {
     const userId = currentUser.id;

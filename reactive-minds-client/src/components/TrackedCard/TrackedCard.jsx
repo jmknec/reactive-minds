@@ -19,7 +19,11 @@ export default function TrackedCard(props) {
       </div>
       <div className="tracking__container">
         <div className="tracking__text">
-          <p>{`You've tracked use of ${tool} ${count} times and you've rated it ${userAvg}.`}</p>
+          {!userAvg ? (
+            <p>{`You've tracked use of ${tool} ${count} times but you haven't rated it yet.`}</p>
+          ) : (
+            <p>{`You've tracked use of ${tool} ${count} times and you've rated it ${userAvg}.`}</p>
+          )}
         </div>
         <div className="tracking__user-icons">
           <UserIcons saved={saved} toolid={id} toggleModal={toggleModal} />

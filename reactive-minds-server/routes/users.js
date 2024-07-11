@@ -73,6 +73,7 @@ router
           "tools.effect",
           "tools.description",
           "tools.avg_rating",
+          "tool_usage.is_bookmarked",
           knex.raw("IFNULL(tool_usage.is_bookmarked, 0) AS is_bookmarked")
         )
         .from("tools")

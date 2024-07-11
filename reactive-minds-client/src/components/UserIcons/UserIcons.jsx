@@ -19,7 +19,7 @@ export default function UserIcons({ saved, toolid, toggleModal }) {
         { tool_id: toolid }
       );
       setIsSaved(!isSaved);
-      console.log(saveResponse);
+      console.log(isSaved, saveResponse);
     } catch (error) {
       console.error("Error toggling save:", error);
     }

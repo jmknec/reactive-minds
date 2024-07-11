@@ -41,6 +41,18 @@ export default function ToolsList() {
       };
       getEffectTools();
     }
+    return () => {
+      setTools([
+        {
+          id: null,
+          name: "",
+          effect: "",
+          description: "",
+          avg_rating: 0,
+          is_bookmarked: 0,
+        },
+      ]);
+    };
   }, []);
 
   useEffect(() => {
@@ -60,6 +72,18 @@ export default function ToolsList() {
       };
       getTools();
     }
+    return () => {
+      setTools([
+        {
+          id: null,
+          name: "",
+          effect: "",
+          description: "",
+          avg_rating: 0,
+          is_bookmarked: 0,
+        },
+      ]);
+    };
   }, []);
 
   if (location === "grounding" || location === "uplifting") {

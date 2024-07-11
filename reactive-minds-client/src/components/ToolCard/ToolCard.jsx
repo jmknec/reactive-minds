@@ -3,11 +3,14 @@ import "./ToolCard.scss";
 import { sentenceCase, normalize } from "../../utils/utils";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import UserIcons from "../UserIcons/UserIcons";
+import TrackToolModal from "../TrackToolModal/TrackToolModal";
 
 export default function ToolCard(props) {
   const { id, tool, effect, description, rating, saved } = props;
   const { currentUser } = useContext(CurrentUserContext);
   const [isOpen, setIsOpen] = useState(false);
+
+  console.log(id, saved);
 
   const toggleModal = () => {
     setIsOpen(!isOpen);
@@ -42,6 +45,17 @@ export default function ToolCard(props) {
           {currentUser ? (
             <UserIcons saved={saved} toolid={id} toggleModal={toggleModal} />
           ) : null}
+        </div>
+        <div className="tracking__modal">
+          {isOpen && (
+            <TrackToolModal
+              isOpen={isOpen}
+              onClose={toggleModal}
+              tool={tool}
+              toolid={id}
+              effect={effect}
+            />
+          )}
         </div>
       </div>
     </div>
