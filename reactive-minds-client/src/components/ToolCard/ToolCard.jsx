@@ -1,12 +1,17 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import "./ToolCard.scss";
 import { sentenceCase, normalize } from "../../utils/utils";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import UserIcons from "../UserIcons/UserIcons";
 
 export default function ToolCard(props) {
-  const { id, tool, effect, description, rating } = props;
+  const { id, tool, effect, description, rating, saved } = props;
   const { currentUser } = useContext(CurrentUserContext);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleModal = () => {
+    setIsOpen(!isOpen);
+  };
   const groundingSentence = () => {
     return `${sentenceCase(tool)}is a ${normalize(
       effect
@@ -34,7 +39,9 @@ export default function ToolCard(props) {
           <p className="tool__description">{description}</p>
         </div>
         <div className="tool__user-icons">
-          {currentUser ? <UserIcons /> : null}
+          {currentUser ? (
+            <UserIcons saved={saved} toolid={id} toggleModal={toggleModal} />
+          ) : null}
         </div>
       </div>
     </div>

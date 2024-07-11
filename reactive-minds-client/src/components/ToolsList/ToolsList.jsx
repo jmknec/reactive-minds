@@ -1,12 +1,15 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
 import "./ToolsList.scss";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import HeroBanner from "../HeroBanner/HeroBanner";
 import ToolCard from "../ToolCard/ToolCard";
 
 export default function ToolsList() {
   const baseUrl = import.meta.env.VITE_API_URL;
+  const currentUser = useContext(CurrentUserContext);
+  const userId = currentUser.id;
   const location = useLocation().pathname.slice(1);
   const [tools, setTools] = useState([
     {
@@ -15,19 +18,21 @@ export default function ToolsList() {
       effect: "",
       description: "",
       avg_rating: 0,
+      is_bookmarked: 0,
     },
   ]);
 
   useEffect(() => {
-    const getTools = async () => {
-      const globalResponse = await axios.get(`${baseUrl}/tools`);
-      setTools(globalResponse.data);
-    };
-    getTools();
-  }, []);
-
-  useEffect(() => {
     if (location === "grounding" || location === "uplifting") {
+      if (currentUser) {
+        const getSavedEffectTools = async () => {
+          const savedEffectResponse = await axios.get(
+            `${baseUrl}/users/${userId}/tools/${location}`
+          );
+          setTools(savedEffectResponse.data);
+        };
+        getSavedEffectTools();
+      }
       const getEffectTools = async () => {
         const effectResponse = await axios.get(
           `${baseUrl}/tools/emotions/${location}`
@@ -35,6 +40,25 @@ export default function ToolsList() {
         setTools(effectResponse.data);
       };
       getEffectTools();
+    }
+  }, []);
+
+  useEffect(() => {
+    if (location === "all-tools") {
+      if (currentUser) {
+        const getSavedTools = async () => {
+          const savedResponse = await axios.get(
+            `${baseUrl}/users/${userId}/tools`
+          );
+          setTools(savedResponse.data);
+        };
+        getSavedTools();
+      }
+      const getTools = async () => {
+        const globalResponse = await axios.get(`${baseUrl}/tools`);
+        setTools(globalResponse.data);
+      };
+      getTools();
     }
   }, []);
 
@@ -64,6 +88,7 @@ export default function ToolsList() {
                 effect={tool.effect}
                 description={tool.description}
                 rating={tool.avg_rating}
+                saved={tool.is_bookmarked}
               />
             );
           })}
@@ -88,6 +113,7 @@ export default function ToolsList() {
               effect={tool.effect}
               description={tool.description}
               rating={tool.avg_rating}
+              saved={tool.is_bookmarked}
             />
           );
         })}

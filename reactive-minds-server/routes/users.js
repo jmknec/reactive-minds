@@ -73,24 +73,25 @@ router
           "tools.effect",
           "tools.description",
           "tools.avg_rating",
-          "tool_usage.user_id",
-          "tool_usage.is_bookmarked"
+          knex.raw("IFNULL(tool_usage.is_bookmarked, 0) AS is_bookmarked")
         )
-        .from("tool_usage")
-        .join("users", "tool_usage.user_id", "=", "users.id")
-        .join("tools", "tool_usage.tool_id", "=", "tools.id")
-        .where("tool_usage.user_id", id);
-      if (userTools.length < 1) {
-        return res
-          .status(404)
-          .send(
-            "Unable to find tools the user has bookmarked or previously tracked usage of"
+        .from("tools")
+        .leftJoin("tool_usage", function () {
+          this.on("tools.id", "=", "tool_usage.tool_id").andOn(
+            "tool_usage.user_id",
+            "=",
+            knex.raw("?", [id])
           );
+        })
+        .groupBy("tools.id", "tools.name", "tool_usage.is_bookmarked")
+        .orderBy("tools.id");
+
+      if (!userTools || userTools.length === 0) {
+        return res.status(404).send("No tools found");
       }
-      console.log(userTools.length);
       res.json(userTools);
     } catch {
-      return res.status(500).send("Error getting user's bookmarked tools");
+      return res.status(500).send("Error getting tools");
     }
   })
   .post(async (req, res) => {
@@ -130,6 +131,40 @@ router
       return res.status(500).send("Error bookmarking tool");
     }
   });
+//get user tools by effect
+router.route("/:id/tools/:effect").get(async (req, res) => {
+  const id = req.params.id;
+  const effect = req.params.effect;
+  try {
+    const effectToolList = await knex
+      .select(
+        "tools.id",
+        "tools.name",
+        "tools.effect",
+        "tools.description",
+        "tools.avg_rating",
+        knex.raw("IFNULL(tool_usage.is_bookmarked, 0) AS is_bookmarked")
+      )
+      .from("tools")
+      .where("effect", effect)
+      .leftJoin("tool_usage", function () {
+        this.on("tools.id", "=", "tool_usage.tool_id").andOn(
+          "tool_usage.user_id",
+          "=",
+          knex.raw("?", [id])
+        );
+      })
+      .groupBy("tools.id", "tools.name", "tool_usage.is_bookmarked")
+      .orderBy("tools.id");
+
+    if (!effectToolList || effectToolList.length === 0) {
+      return res.status(404).send("No tools found");
+    }
+    res.json(effectToolList);
+  } catch {
+    return res.status(500).send("Error getting tools");
+  }
+});
 //get all usage-tracking data for user
 router.route("/:id/tracking").get(async (req, res) => {
   const userId = req.params.id;
